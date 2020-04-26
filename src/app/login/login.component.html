@@ -1,0 +1,15 @@
+
+<body>
+    <div class="contact-form">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png" class="avatar">
+        <h2>Contact Form</h2>
+        <form>
+            <p>Username</p>
+            <input type="text" name="Username" placeholder="Enter username" id="username" [(ngModel)]="user.username">
+            <p>Password</p>
+            <input type="password" name="password" placeholder="Enter Password" [(ngModel)]="user.password">
+            <input type="submit" name="" value="Sign In"  (click)="login(user)">
+        </form>
+    </div>
+</body>
+ 
