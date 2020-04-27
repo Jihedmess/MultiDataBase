@@ -11,7 +11,7 @@
         <div class="col-sm-6">
           
           <div class="col-sm-6">
-            <a (click)="open(content)" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New User</span></a>
+            <a (click)="openAddDatasource(content)" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New User</span></a>
         </div>
          </div>
       </div>
@@ -39,8 +39,8 @@
           <td>{{item.password}}</td>
           <td>{{item.platform}}</td>
           
-          <td >
-              <input type="button"  value="update" class="btn btn-info" style="margin-left: 10px" />
+          <td>
+              <input type="button"  value="update" class="btn btn-info" style="margin-left: 10px" (click)="UpdateAddDatasource(content1,item.id)" />
               <input type="button"   value="delete"class="btn btn-info" style="margin-left: 10px" (click)="delete(item.id)" />
 
             </td>
@@ -58,7 +58,7 @@
 
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Update depense</h4>
+    <h4 class="modal-title" id="modal-basic-title">Add Datasource</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -99,5 +99,52 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark"  (click)="add()" >Save</button>
+  </div>
+</ng-template>
+
+
+<ng-template #content1 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title-update">Update Datasource</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form >
+      <div class="form-group">
+
+      <p>Url</p>
+        <input type="text" name="url" id="url"  placeholder="Enter your url" [(ngModel)]="urlupdate" />
+      </div>
+
+      
+
+      <div class="form-group">
+        <p>User</p>
+        <input type="text" name="user"  placeholder="Enter your user" [(ngModel)]="userupdate"/>
+      </div>
+
+        <div class="form-group">
+        <p>Password</p>
+        <input type="password" name="password" placeholder="enter your password" [(ngModel)]="passwordupdate"/>
+          </div>
+
+          <div class="form-group">
+        <p>Platform</p>
+      </div>
+        <input type="text" name="platform"  placeholder="enter your platform" [(ngModel)]="platformupdate"/>
+        
+       
+   
+          
+          
+       
+
+
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark"  (click)="updateDatsource()" >Save</button>
   </div>
 </ng-template>

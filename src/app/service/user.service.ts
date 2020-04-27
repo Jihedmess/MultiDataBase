@@ -27,6 +27,12 @@ export class UserService {
     console.log(headers.keys().values)
     return this.http.get("http://localhost:8080/Users")
    }
+   getUserbyId(id): Observable<any>{
+    const headers = new HttpHeaders({'Authorization':'Bearer '});
+    console.log("headerrrr")
+    console.log(headers.keys().values)
+    return this.http.get("http://localhost:8080/User?id="+id)
+   }
 
    deleteUser(id:any): Observable<any>{
     const headers = new HttpHeaders({'Content-Type':'application/json'});
@@ -35,7 +41,7 @@ export class UserService {
 
    updateUser(user:any): Observable<any>{
     const headers = new HttpHeaders({'Access-Control-Allow-Origin':'*'});
-    return this.http.post("http://localhost:8080/UpdateUser",user,{headers:headers})
+    return this.http.put("http://localhost:8080/UpdateUser",user,{headers:headers})
    }
   
   }

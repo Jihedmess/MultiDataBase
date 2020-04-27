@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {DatasourceService} from '../../service/datasource.service';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import {DataSource} from '../../service/Datasource'
+import {DataSource} from '../../service/Datasource';
+import {DataSourceupdate} from '../../service/Datasourceupdate'
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -15,6 +16,11 @@ export class DashboardComponent implements OnInit {
    password :any
    user :any
    platform :any
+   idupadate:any
+   urlupdate :any
+   passwordupdate :any
+   userupdate :any
+   platformupdate :any
   constructor(private service:DatasourceService , private servicemodal :NgbModal) { }
 
   ngOnInit(): void {
@@ -36,11 +42,12 @@ export class DashboardComponent implements OnInit {
         this.getAllDataSource()
 
       }
+      this.getAllDataSource()
     })
   }
     
 
-  open(content ) {
+  openAddDatasource(content ) {
     
   
    this.servicemodal.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -64,6 +71,35 @@ add(){
     if(res){
       this.servicemodal.dismissAll()
       this.getAllDataSource()
+    }
+  })
+}
+
+
+
+UpdateAddDatasource(content,id){
+  this.idupadate=id
+  this.service.getDataSourcebyId(id).subscribe((res)=>{
+    
+    this.urlupdate=res.url
+    this.userupdate=res.user
+    this.passwordupdate = res.password
+    this.platformupdate = res.platform
+  })
+  this.servicemodal.open(content, {ariaLabelledBy: 'modal-basic-title-update'}).result.then((result) => {
+    this.closeResult = `Closed with: ${result}`;
+  }, (reason) => {
+    this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+  });
+}
+
+
+updateDatsource(){
+  let datasource = new DataSourceupdate(this.idupadate,this.urlupdate,this.userupdate,this.passwordupdate,this.platformupdate);
+  this.service.updateDataSource(datasource).subscribe((res)=>{
+    if(res){
+      this.getAllDataSource()
+      this.servicemodal.dismissAll()
     }
   })
 }

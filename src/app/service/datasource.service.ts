@@ -22,17 +22,23 @@ export class DatasourceService {
     const headers = new HttpHeaders({'Authorization':'Bearer '});
     console.log("headerrrr")
     console.log(headers.keys().values)
-    return this.http.get("http://localhost:8080/DataBases")
+    return this.http.get("http://localhost:8080/dataBases")
+   }
+   getDataSourcebyId(id): Observable<any>{
+    const headers = new HttpHeaders({'Authorization':'Bearer '});
+    console.log("headerrrr")
+    console.log(headers.keys().values)
+    return this.http.get("http://localhost:8080/dataBase?id="+id)
    }
 
    deleteDataSources(id:any): Observable<any>{
     const headers = new HttpHeaders({'Content-Type':'application/json'});
-    return this.http.delete("http://localhost:8080/DataBaseDelete?id="+id)
+    return this.http.delete("http://localhost:8080/dataBaseDelete?id="+id)
    }
 
-   updateDataSource(user:any): Observable<any>{
+   updateDataSource(datasource:any): Observable<any>{
     const headers = new HttpHeaders({'Access-Control-Allow-Origin':'*'});
-    return this.http.post("http://localhost:8080/UpdateDataBase",user,{headers:headers})
+    return this.http.put("http://localhost:8080/updateDataBase",datasource,{headers:headers})
    }
   
   }
