@@ -6,12 +6,12 @@
     <div class="table-title">
       <div class="row">
         <div class="col-sm-6">
-          <h2>Users <b>DataSource</b></h2>
+          <h2> <b>Liste des environnements</b></h2>
         </div>
         <div class="col-sm-6">
           
           <div class="col-sm-6">
-            <a (click)="openAddDatasource(content)" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New User</span></a>
+            <a (click)="openAddDatasource(content)" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Ajouter un environnement</span></a>
         </div>
          </div>
       </div>
@@ -40,9 +40,9 @@
           <td>{{item.platform}}</td>
           
           <td>
-              <input type="button"  value="update" class="btn btn-info" style="margin-left: 10px" (click)="UpdateAddDatasource(content1,item.id)" />
-              <input type="button"   value="delete"class="btn btn-info" style="margin-left: 10px" (click)="delete(item.id)" />
-
+              <input type="button"  value="Modifier" class="btn btn-info" style="margin-left: 10px" (click)="UpdateAddDatasource(content1,item.id)" />
+              <input type="button"   value="Supprimer"class="btn btn-info" style="margin-left: 10px" (click)="delete(item.id)" />
+              <input type="button"   value="Connecter"class="btn btn-info" style="margin-left: 10px"  />
             </td>
             
         </tr>
@@ -58,7 +58,7 @@
 
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Add Datasource</h4>
+    <h4 class="modal-title" id="modal-basic-title">Ajouter un environnement</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -98,14 +98,14 @@
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark"  (click)="add()" >Save</button>
+    <button type="button" class="btn btn-outline-dark"  (click)="add()" >Ajouter</button>
   </div>
 </ng-template>
 
 
 <ng-template #content1 let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title-update">Update Datasource</h4>
+    <h4 class="modal-title" id="modal-basic-title-update">Modifier l'environnement</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -145,6 +145,6 @@
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark"  (click)="updateDatsource()" >Save</button>
+    <button type="button" class="btn btn-outline-dark"  (click)="updateDatsource()" >Enregistrer</button>
   </div>
 </ng-template>

@@ -8,6 +8,7 @@ import { UsersComponent } from './modules/users/users.component';
 import { UpdateUserComponent } from './modules/update-user/update-user.component';
 import { AddUserComponent } from './modules/add-user/add-user.component';
 import {AuthGuard} from '../app/auth.guard';
+import { FonctionnalitesComponent } from './modules/fonctionnalites/fonctionnalites.component';
 
 
 const routes: Routes = [
@@ -19,12 +20,16 @@ const routes: Routes = [
   path : 'home',
   component: DefaultComponent,
   children : [{
-    path: 'dashboard', 
+    path: 'environnements', 
     component: DashboardComponent , canActivate:[AuthGuard]},
     {
-      path:'posts',
+      path:'addfonct',
       component: PostsComponent ,canActivate:[AuthGuard]
     
+   },
+   {
+     path:'fonctionnalites',
+     component: FonctionnalitesComponent, canActivate:[AuthGuard]
    },
     {
       path:'users',

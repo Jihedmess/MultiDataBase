@@ -12,11 +12,13 @@ import { LoginComponent } from './login/login.component';
 import {UserService} from './service/user.service';
 import {AuthGuard} from './auth.guard';
 import {DatasourceService} from './service/datasource.service';
+import { FonctionnalitesComponent } from './modules/fonctionnalites/fonctionnalites.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    FonctionnalitesComponent,
   ],
   imports: [
     BrowserModule,
