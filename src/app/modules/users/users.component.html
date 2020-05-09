@@ -3,10 +3,10 @@
       <div class="table-title">
         <div class="row">
           <div class="col-sm-6">
-            <h2>Users <b>List</b></h2>
+            <h2><b>List des utilisateurs</b></h2>
           </div>
           <div class="col-sm-6">
-            <a href="/home/addUser" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New User</span></a>
+            <a href="/home/addUser" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Ajouter nouveau utilisateur</span></a>
         </div>
         </div>
       </div>
@@ -32,8 +32,8 @@
             <td>{{item.role}}</td>
             
             <td >
-                <input type="button"  value="update" class="btn btn-info" style="margin-left: 10px" (click)="openAddDatasource(content,item.id)" />
-                <input type="button"   value="delete"class="btn btn-info" style="margin-left: 10px" (click)="delete(item.id)" />
+                <input type="button"  value="Modifier" class="btn btn-info" style="margin-left: 10px" (click)="openAddDatasource(content,item.id)" />
+                <input type="button"   value="Supprimer"class="btn btn-info" style="margin-left: 10px" (click)="delete(item.id)" />
 
               </td>
               
