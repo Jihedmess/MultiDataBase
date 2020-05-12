@@ -3,6 +3,7 @@ import {DatasourceService} from '../../service/datasource.service';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {DataSource} from '../../service/Datasource';
 import {DataSourceupdate} from '../../service/Datasourceupdate'
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -21,7 +22,7 @@ export class DashboardComponent implements OnInit {
    passwordupdate :any
    userupdate :any
    platformupdate :any
-  constructor(private service:DatasourceService , private servicemodal :NgbModal) { }
+  constructor(private service:DatasourceService , private servicemodal :NgbModal,private router:Router) { }
 
   ngOnInit(): void {
     this.getAllDataSource()
@@ -102,5 +103,10 @@ updateDatsource(){
       this.servicemodal.dismissAll()
     }
   })
+}
+
+
+connect(url){
+  this.router.navigate(['/home/fonctionnalites/'+url]);
 }
 }

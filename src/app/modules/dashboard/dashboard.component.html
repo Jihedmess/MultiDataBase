@@ -22,7 +22,7 @@
         
          
          
-          <th>Url</th>
+          <th>Name</th>
           <th>User</th>
           <th>Password</th>
           <th>Platform</th>
@@ -42,7 +42,7 @@
           <td>
               <input type="button"  value="Modifier" class="btn btn-info" style="margin-left: 10px" (click)="UpdateAddDatasource(content1,item.id)" />
               <input type="button"   value="Supprimer"class="btn btn-info" style="margin-left: 10px" (click)="delete(item.id)" />
-              <input type="button"   value="Connecter"class="btn btn-info" style="margin-left: 10px"  />
+              <input type="button"   value="Connecter"class="btn btn-info" style="margin-left: 10px" (click)="connect(item.url)" />
             </td>
             
         </tr>
