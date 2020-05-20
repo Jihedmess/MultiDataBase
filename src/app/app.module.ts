@@ -40,6 +40,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatCardModule} from '@angular/material/card';
 
 
 @NgModule({
@@ -70,9 +71,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-   
     PortalModule,
-    ScrollingModule,
+    ScrollingModule
   ],
   declarations: [
     AppComponent,
@@ -80,6 +80,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     FonctionnalitesComponent,
   ],
   imports: [
+    MatCardModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

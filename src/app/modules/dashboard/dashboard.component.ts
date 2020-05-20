@@ -40,11 +40,12 @@ export class DashboardComponent implements OnInit {
     this.service.deleteDataSources(id).subscribe((res)=>{
       if(res){
         
-        this.getAllDataSource()
+      this.getAllDataSource()
 
       }
-      this.getAllDataSource()
+      
     })
+    this.getAllDataSource()
   }
     
 
@@ -67,6 +68,12 @@ export class DashboardComponent implements OnInit {
   }
 }
 add(){
+  if(this.platform == 1){
+    this.platform = "com.mysql.jdbc.Driver"
+  }
+  if(this.platform == 2){
+    this.platform = "org.postgresql.Driver"
+  }
   let datasource = new DataSource(this.url,this.user,this.password,this.platform)
   this.service.saveDataSource(datasource).subscribe((res)=>{
     if(res){

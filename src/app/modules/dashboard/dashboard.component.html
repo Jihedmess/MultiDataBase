@@ -23,9 +23,7 @@
          
          
           <th>Name</th>
-          <th>User</th>
-          <th>Password</th>
-          <th>Platform</th>
+          
           <th>Action</th>
         </tr>
       </thead>
@@ -35,14 +33,13 @@
         <tr *ngFor="let item of listDataSource" >
         
           <td>{{item.url}} </td>
-          <td>{{item.user}}</td>
-          <td>{{item.password}}</td>
-          <td>{{item.platform}}</td>
+          
+         
           
           <td>
               <input type="button"  value="Modifier" class="btn btn-info" style="margin-left: 10px" (click)="UpdateAddDatasource(content1,item.id)" />
               <input type="button"   value="Supprimer"class="btn btn-info" style="margin-left: 10px" (click)="delete(item.id)" />
-              <input type="button"   value="Connecter"class="btn btn-info" style="margin-left: 10px" (click)="connect(item.url)" />
+              <input type="button"   value="Connecter"class="btn btn-info" style="margin-left: 10px" (click)="connect(item.id)" />
             </td>
             
         </tr>
@@ -86,9 +83,12 @@
           <div class="form-group">
         <p>Platform</p>
       </div>
-        <input type="text" name="platform"  placeholder="enter your platform" [(ngModel)]="platform"/>
         
-       
+        
+        <select [(ngModel)]="platform" name="selectePlateforme">
+          <option  [ngValue]="2">org.postgresql.Driver</option>
+          <option  [ngValue]="1">com.mysql.jdbc.Driver</option>
+        </select>
    
           
           

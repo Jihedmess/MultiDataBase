@@ -65,5 +65,10 @@ export class UserService {
     const headers = new HttpHeaders({'Access-Control-Allow-Origin':'*'});
     return this.http.post("http://localhost:9090/addFonct2",fonct)
    }
+
+   getfonctbyData(fonct:any): Observable<any>{
+    const headers = new HttpHeaders({'Access-Control-Allow-Origin':'*'});
+    return this.http.post("http://localhost:9090/listeFonct7",fonct)
+   }
   
   }
