@@ -25,26 +25,13 @@ export class FonctionnalitesComponent implements OnInit {
     this.url=this.route.snapshot.params['url'];
 
     console.log(this.url)
-    this.dataservice.getDataSourcebyId(this.url).subscribe((res=>{
-      console.log("teste get database by id")
-      console.log(res)
-      this.request_url = res.url
-      this.request_Driver = res.plateform
-      this.request_password = res.password
-      this.request_user = res.user
-      let request = new Request(this.request_url,this.request_user,this.request_password,this.request_Driver)
-      this.service.getfonctbyData(request).subscribe((res=>{
-        console.log(res)
-        this.data = res
-      }))
-    }))
-  
     
+    this.getAllfonctionalite()
     
   }
 
   getAllfonctionalite(){
-    this.service.getFonct1().subscribe((res)=>{
+    this.service.getFonct1(localStorage.getItem('currentUser')).subscribe((res)=>{
       console.log(res)
      this.data = res
    })

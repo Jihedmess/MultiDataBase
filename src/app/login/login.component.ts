@@ -18,9 +18,9 @@ export class LoginComponent implements OnInit {
 
   login(user:any){
     this.service.loginUser(user).subscribe((res)=>{
-      console.log(res.token)
-      if(res.token != null){
-        localStorage.setItem('currentUser',JSON.stringify(res.token));
+     console.log(res)
+      if(res.accessToken != null){
+        localStorage.setItem('currentUser',res.accessToken);
         this.router.navigate(['/home/users']);
       }else{
         this.router.navigate(['']);

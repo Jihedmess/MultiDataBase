@@ -47,7 +47,7 @@ export class UsersComponent implements OnInit {
    openAddDatasource(content,id ) {
     
      this.id = id;
-     this.service.getUserbyId(id).subscribe((res)=>{
+     this.service.getUserbyId(id,localStorage.getItem('currentUser')).subscribe((res)=>{
        console.log("eeeeeeeeeeeeeeeeeeeeeeee")
        console.log(res)
        this.username = res.username
@@ -75,10 +75,10 @@ export class UsersComponent implements OnInit {
  updateUser(){
    let user = new UserUpdate (this.id,this.username,this.password,this.email,this.role);
    this.service.updateUser(user).subscribe((res)=>{
-     if(res){
+   
        this.getAllUser()
        this.servicemodal.dismissAll()
-     }
+
    })
  }
   

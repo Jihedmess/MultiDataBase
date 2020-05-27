@@ -1,19 +1,21 @@
 export class Fonctionalite {
     
-    private  id :any;
+  
     private name :string;
     private desscription : string;
     private fileActivation :string;
     private filaDesactivation :string;
     private fileChek :string;
+    private url :string;
 
-    constructor(id , name ,desscription,fileActivation,filaDesactivation,fileChek){
-        this.id = id;
+    constructor( name ,desscription,fileActivation,filaDesactivation,fileChek,url){
+        
         this.name = name;
         this.desscription = desscription;
         this.fileActivation = fileActivation;
         this.filaDesactivation = filaDesactivation;
         this.fileChek = fileChek;
+        this.url = url
     }
 
    

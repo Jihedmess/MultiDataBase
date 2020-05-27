@@ -12,60 +12,46 @@ export class UserService {
 
   saveUser(user:any): Observable<any>{
    const headers = new HttpHeaders({'Access-Control-Allow-Origin':'*'});
-   return this.http.post("http://localhost:8080/register",user,{headers:headers})
+   return this.http.post("http://localhost:8080/api/auth/signup",user,{headers:headers})
   }
 
   loginUser(user:any): Observable<any>{
     const headers = new HttpHeaders({'Content-Type':'application/json'});
-    return this.http.post("http://localhost:8080/authenticate",user)
+    return this.http.post("http://localhost:8080/api/auth/signin",user)
    }
  
 
    getUsers(token:any): Observable<any>{
     const headers = new HttpHeaders({'Authorization':'Bearer '+token});
-    console.log("headerrrr")
-    console.log(headers.keys().values)
-    return this.http.get("http://localhost:8080/Users")
+   
+    return this.http.get("http://localhost:8080/api/auth/findAllUser", { headers: headers })
    }
-   getUserbyId(id): Observable<any>{
-    const headers = new HttpHeaders({'Authorization':'Bearer '});
-    console.log("headerrrr")
-    console.log(headers.keys().values)
-    return this.http.get("http://localhost:8080/User?id="+id)
+   getUserbyId(id,token): Observable<any>{
+    const headers = new HttpHeaders({'Authorization':'Bearer '+token});
+    return this.http.get("http://localhost:8080/api/auth/findById/"+id ,{ headers: headers })
    }
 
    deleteUser(id:any): Observable<any>{
     const headers = new HttpHeaders({'Content-Type':'application/json'});
-    return this.http.delete("http://localhost:8080/UserDelete?id="+id)
+    return this.http.delete("http://localhost:8080/api/auth/deleteUser/"+id)
    }
 
    updateUser(user:any): Observable<any>{
     const headers = new HttpHeaders({'Access-Control-Allow-Origin':'*'});
-    return this.http.put("http://localhost:8080/UpdateUser",user,{headers:headers})
+    return this.http.put("http://localhost:8080/api/auth/updateUser",user)
    }
 
-   getFonct1(): Observable<any>{
-    const headers = new HttpHeaders({'Authorization':'Bearer '});
-    console.log("headerrrr")
-    console.log(headers.keys().values)
-    return this.http.get("http://localhost:9090/listeFonct1")
+   getFonct1(token): Observable<any>{
+    const headers = new HttpHeaders({'Authorization':'Bearer '+token});
+    return this.http.get("http://localhost:8080/api/findAllfonct",{ headers: headers })
    }
 
-   getFonct2(): Observable<any>{
-    const headers = new HttpHeaders({'Authorization':'Bearer '});
-    console.log("headerrrr")
-    console.log(headers.keys().values)
-    return this.http.get("http://localhost:9090/listeFonct2")
+  
+   savefonct1(fonct:any,token): Observable<any>{
+    const headers = new HttpHeaders({'Authorization':'Bearer '+token});
+    return this.http.post("http://localhost:8080/api/addfonct",fonct,{ headers: headers })
    }
-   savefonct1(fonct:any): Observable<any>{
-    const headers = new HttpHeaders({'Access-Control-Allow-Origin':'*'});
-    return this.http.post("http://localhost:9090/addFonct1",fonct)
-   }
-   savefonct2(fonct:any): Observable<any>{
-    const headers = new HttpHeaders({'Access-Control-Allow-Origin':'*'});
-    return this.http.post("http://localhost:9090/addFonct2",fonct)
-   }
-
+   
    getfonctbyData(fonct:any): Observable<any>{
     const headers = new HttpHeaders({'Access-Control-Allow-Origin':'*'});
     return this.http.post("http://localhost:9090/listeFonct7",fonct)

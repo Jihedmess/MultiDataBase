@@ -47,18 +47,13 @@ export class PostsComponent implements OnInit {
    }
 
    addFonctionalite(){
-     let fonct = new Fonctionalite(Math.random()*100,this.name,this.description,this.file1,this.file2,this.file3);
-     if(this.url=="base1"){
-       console.log("aaaaaaaaaaaaaaaaaa")
-     this.service.savefonct1(fonct).subscribe((res=>{
+     let fonct = new Fonctionalite(this.name,this.description,this.file1,this.file2,this.file3,this.url);
+    
+       
+     this.service.savefonct1(fonct,localStorage.getItem('currentUser')).subscribe((res=>{
        console.log(res)
      }))
-     } else
-     if(this.url=="base2"){
-      this.service.savefonct2(fonct).subscribe((res=>{
-        console.log(res)
-      }))
-     }
-   }
-
+    
+   
+    }
 }

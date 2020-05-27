@@ -23,12 +23,12 @@ const routes: Routes = [
     path: 'environnements', 
     component: DashboardComponent , canActivate:[AuthGuard]},
     {
-      path:'addfonct/:url',
+      path:'addfonct',
       component: PostsComponent ,canActivate:[AuthGuard]
     
    },
    {
-     path:'fonctionnalites/:url',
+     path:'fonctionnalites',
      component: FonctionnalitesComponent, canActivate:[AuthGuard]
    },
     {

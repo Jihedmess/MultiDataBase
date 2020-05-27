@@ -29,7 +29,7 @@
           
             <td>{{item.username}} </td>
             <td>{{item.email}}</td>
-            <td>{{item.role}}</td>
+            <td ><span *ngFor="let role of item.roles">{{role.name}} &nbsp;</span></td>
             
             <td >
                 <input type="button"  value="Modifier" class="btn btn-info" style="margin-left: 10px" (click)="openAddDatasource(content,item.id)" />

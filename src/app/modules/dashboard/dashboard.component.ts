@@ -16,12 +16,14 @@ export class DashboardComponent implements OnInit {
    url :any
    password :any
    user :any
+   name:any
    platform :any
    idupadate:any
    urlupdate :any
    passwordupdate :any
    userupdate :any
    platformupdate :any
+   nameupdate:any
   constructor(private service:DatasourceService , private servicemodal :NgbModal,private router:Router) { }
 
   ngOnInit(): void {
@@ -30,14 +32,15 @@ export class DashboardComponent implements OnInit {
   
 
   getAllDataSource(){
-    this.service.getDataSources().subscribe((res)=>{
+    console.log(localStorage.getItem('currentUser').valueOf())
+    this.service.getDataSources(localStorage.getItem('currentUser').valueOf()).subscribe((res)=>{
     this.listDataSource =res
     })
   }
 
 
   delete(id:any){
-    this.service.deleteDataSources(id).subscribe((res)=>{
+    this.service.deleteDataSources(id,localStorage.getItem('currentUser').valueOf()).subscribe((res)=>{
       if(res){
         
       this.getAllDataSource()
@@ -74,8 +77,8 @@ add(){
   if(this.platform == 2){
     this.platform = "org.postgresql.Driver"
   }
-  let datasource = new DataSource(this.url,this.user,this.password,this.platform)
-  this.service.saveDataSource(datasource).subscribe((res)=>{
+  let datasource = new DataSource(this.url,this.user,this.password,this.platform,this.name)
+  this.service.saveDataSource(datasource,localStorage.getItem('currentUser')).subscribe((res)=>{
     if(res){
       this.servicemodal.dismissAll()
       this.getAllDataSource()
@@ -87,10 +90,11 @@ add(){
 
 UpdateAddDatasource(content,id){
   this.idupadate=id
-  this.service.getDataSourcebyId(id).subscribe((res)=>{
+  this.service.getDataSourcebyId(id,localStorage.getItem('currentUser')).subscribe((res)=>{
     
     this.urlupdate=res.url
     this.userupdate=res.user
+    this.nameupdate = res.name
     this.passwordupdate = res.password
     this.platformupdate = res.platform
   })
@@ -103,8 +107,8 @@ UpdateAddDatasource(content,id){
 
 
 updateDatsource(){
-  let datasource = new DataSourceupdate(this.idupadate,this.urlupdate,this.userupdate,this.passwordupdate,this.platformupdate);
-  this.service.updateDataSource(datasource).subscribe((res)=>{
+  let datasource = new DataSourceupdate(this.idupadate,this.urlupdate,this.userupdate,this.passwordupdate,this.platformupdate,this.nameupdate);
+  this.service.updateDataSource(datasource,localStorage.getItem('currentUser')).subscribe((res)=>{
     if(res){
       this.getAllDataSource()
       this.servicemodal.dismissAll()
@@ -114,6 +118,6 @@ updateDatsource(){
 
 
 connect(url){
-  this.router.navigate(['/home/fonctionnalites/'+url]);
+  this.router.navigate(['/home/fonctionnalites']);
 }
 }

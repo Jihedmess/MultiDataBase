@@ -1,11 +1,11 @@
 export class UserUpdate{
-    private Id :any
+    private id :any
     private username :any
     private password :any
     private email : any
     private role :any
     constructor(id ,username ,pass , email ,role){
-        this.Id = id
+        this.id = id
         this.username = username
         this.password = pass
         this.email = email
