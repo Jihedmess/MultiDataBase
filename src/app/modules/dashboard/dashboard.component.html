@@ -18,15 +18,17 @@
          </div>
       </div>
     </div>
-    <table class="table table-striped table-hover">
+    <table class="table table-hover">
       <thead>
         <tr >
         
          
          
-          <th>Name</th>
+          <th scope="col">Name</th>
           
-          <th>Action</th>
+          <th style="
+          padding-left: 27%;
+      ">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -38,11 +40,25 @@
           
          
           
-          <td>
-              <input type="button"  value="Modifier" class="btn btn-info" style="margin-left: 10px" (click)="UpdateAddDatasource(content1,item.id)" />
-              <input type="button"   value="Supprimer"class="btn btn-info" style="margin-left: 10px" (click)="delete(item.id)" />
-              <input type="button"   value="Connecter"class="btn btn-info" style="margin-left: 10px" (click)="connect(item.id)" />
-            </td>
+          <td style=" padding-left: 15%;">
+
+              <button class="button" style="margin-left: 10px" (click)="UpdateAddDatasource(content1,item.id)">Modifier</button>
+
+              <button class="button" style="margin-left: 10px" (click)="delete(item.id)">Supprimer</button>
+
+              <button class="button" style="margin-left: 10px"(click)="connect(item.id)" >Connecter</button>
+          
+          </td>
+
+            
+             
+              
+            
+
+
+           
+              
+              
             
         </tr>
     
@@ -63,46 +79,47 @@
     </button>
   </div>
   <div class="modal-body">
-    <form >
-      <div class="form-group">
-
-      <p>Url</p>
-        <input type="text" name="url" id="url"  placeholder="Enter your url" [(ngModel)]="url" />
-      </div>
-
       
+          <form>
+              <div class="form-group">
 
-      <div class="form-group">
-        <p>User</p>
-        <input type="text" name="user"  placeholder="Enter your user" [(ngModel)]="user"/>
-      </div>
+                <p>Url</p>
+                  <input type="text"  class="form-control" name="url" id="url"  placeholder="Enter your url" [(ngModel)]="url" required />
+              </div>
 
-      <div class="form-group">
-        <p>Name</p>
-        <input type="text" name="name"  placeholder="Enter your user" [(ngModel)]="name"/>
-      </div>
+                
 
-        <div class="form-group">
-        <p>Password</p>
-        <input type="password" name="password" placeholder="enter your password" [(ngModel)]="password"/>
-          </div>
+              <div class="form-group">
+                  <p>User</p>
+                  <input type="text"  class="form-control" name="user"  placeholder="Enter your user" [(ngModel)]="user" required/>
+              </div>
 
-          <div class="form-group">
-        <p>Platform</p>
-      </div>
-        
-        
-        <select [(ngModel)]="platform" name="selectePlateforme">
-          <option  [ngValue]="2">org.postgresql.Driver</option>
-          <option  [ngValue]="1">com.mysql.jdbc.Driver</option>
-        </select>
-   
-          
-          
-       
+              <div class="form-group">
+                  <p>Name</p>
+                  <input type="text"  class="form-control" name="name"  placeholder="Enter your user" [(ngModel)]="name"/>
+              </div>
 
+              <div class="form-group">
+                  <p>Password</p>
+                  <input type="password"  class="form-control" name="password" placeholder="enter your password" [(ngModel)]="password" required/>
+              </div>
 
-    </form>
+              <div class="form-group">
+                  <p>Platform</p>
+              </div>
+                  
+              <div class="form-group">   
+              <select [(ngModel)]="platform"  class="form-control" name="selectePlateforme" required>
+                    <option  [ngValue]="2">org.postgresql.Driver</option>
+                    <option  [ngValue]="1">com.mysql.jdbc.Driver</option>
+              </select>
+              </div>
+                    
+                
+             
+
+          </form>
+      
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark"  (click)="add()" >Ajouter</button>
@@ -122,30 +139,30 @@
       <div class="form-group">
 
       <p>Url</p>
-        <input type="text" name="url" id="url"  placeholder="Enter your url" [(ngModel)]="urlupdate" />
+        <input type="text"  class="form-control" name="url" id="url"  placeholder="Enter your url" [(ngModel)]="urlupdate" />
       </div>
 
       
 
       <div class="form-group">
         <p>User</p>
-        <input type="text" name="user"  placeholder="Enter your user" [(ngModel)]="userupdate"/>
+        <input type="text"  class="form-control" name="user"  placeholder="Enter your user" [(ngModel)]="userupdate"/>
       </div>
 
       <div class="form-group">
         <p>Name</p>
-        <input type="text" name="name"  placeholder="Enter your user" [(ngModel)]="nameupdate"/>
+        <input type="text"  class="form-control" name="name"  placeholder="Enter your user" [(ngModel)]="nameupdate"/>
       </div>
 
         <div class="form-group">
         <p>Password</p>
-        <input type="password" name="password" placeholder="enter your password" [(ngModel)]="passwordupdate"/>
+        <input type="password"  class="form-control" name="password" placeholder="enter your password" [(ngModel)]="passwordupdate"/>
           </div>
 
           <div class="form-group">
         <p>Platform</p>
       </div>
-        <input type="text" name="platform"  placeholder="enter your platform" [(ngModel)]="platformupdate"/>
+        <input type="text" name="platform"  class="form-control"  placeholder="enter your platform" [(ngModel)]="platformupdate"/>
         
        
    
@@ -160,3 +177,5 @@
     <button type="button" class="btn btn-outline-dark"  (click)="updateDatsource()" >Enregistrer</button>
   </div>
 </ng-template>
+
+

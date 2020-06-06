@@ -218,3 +218,105 @@ table.table .avatar {
 .modal form label {
     font-weight: normal;
 }	
+
+
+
+
+.contact-form
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 700px;
+    height: 700px;
+    padding: 80px 40px;
+    box-sizing: border-box;
+    background: white(94, 87, 87);
+    border-color: black;
+    border-width: 2px;
+}
+.avatar {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    top: calc(-80px/2);
+    left: calc(50% - 40px);
+}
+.contact-form h2 {
+    margin: 0;
+    padding: 0 0 20px;
+    color: black;
+    text-align: center;
+    text-transform: uppercase;
+}
+.contact-form p
+{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    color: black;
+}
+.contact-form input
+{
+    width: 100%;
+    margin-bottom: 20px;
+}
+.contact-form textarea[type="text"]
+{
+    border: none;
+    border-bottom: 1px solid #1ABC9C;
+    background: transparent;
+    outline: none;
+    height: 200px;
+    color: black;
+    font-size: 16px;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="password"]
+{
+    border: none;
+    border-bottom: 1px solid #1ABC9C;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: black;
+    font-size: 16px;
+}
+.contact-form input[type="submit"] {
+    height: 30px;
+    color: #fff;
+    font-size: 15px;
+    background: #1ABC9C;
+    cursor: pointer;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+    margin-top: 15%;
+}
+.contact-form a
+{
+    color: #1ABC9C;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+}
+input[type="checkbox"] {
+    width: 100%;
+}
+.button {
+    background-color: #76d7c4;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    border-radius: 8px;
+  }
+  

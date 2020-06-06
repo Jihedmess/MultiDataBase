@@ -32,9 +32,10 @@
             <td ><span *ngFor="let role of item.roles">{{role.name}} &nbsp;</span></td>
             
             <td >
-                <input type="button"  value="Modifier" class="btn btn-info" style="margin-left: 10px" (click)="openAddDatasource(content,item.id)" />
-                <input type="button"   value="Supprimer"class="btn btn-info" style="margin-left: 10px" (click)="delete(item.id)" />
+   
+                <button class="button" style="margin-left: -81px" (click)="openAddDatasource(content,item.id)" >Modifier</button>
 
+                <button class="button" style="margin-left: 10px" (click)="delete(item.id)" >Supprimer</button>
               </td>
               
           </tr>
@@ -60,19 +61,19 @@
 
 
         <p>Name</p>
-          <input type="text" name="name" [(ngModel)]="username" >
+          <input type="text"  class="form-control" name="name" [(ngModel)]="username" >
 
           
        
           
           <p>Email</p>
-          <input type="text" name="mail" [(ngModel)]="email">
+          <input type="text"  class="form-control" name="mail" [(ngModel)]="email">
         
           <p>Password</p>
-          <input type="password" name="password" [(ngModel)]="password" >
+          <input type="password"  class="form-control" name="password" [(ngModel)]="password" >
       
           <p>Role</p>
-          <input type="text" name="role" [(ngModel)]="role" >
+          <input type="text"  class="form-control" name="role" [(ngModel)]="role" >
          
                
           
