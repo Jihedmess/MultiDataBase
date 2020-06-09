@@ -4,6 +4,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {DataSource} from '../../service/Datasource';
 import {DataSourceupdate} from '../../service/Datasourceupdate'
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -24,6 +25,8 @@ export class DashboardComponent implements OnInit {
    userupdate :any
    platformupdate :any
    nameupdate:any
+   disabled_button = true
+   selectePlateforme:any
   constructor(private service:DatasourceService , private servicemodal :NgbModal,private router:Router) { }
 
   ngOnInit(): void {
@@ -70,20 +73,25 @@ export class DashboardComponent implements OnInit {
     return  `with: ${reason}`;
   }
 }
-add(){
-  if(this.platform == 1){
-    this.platform = "com.mysql.jdbc.Driver"
+onSubmit(form: NgForm){
+  console.log(form.value)
+  
+  if(form.value.selectePlateforme == 1){
+    this.selectePlateforme = "com.mysql.jdbc.Driver"
   }
-  if(this.platform == 2){
-    this.platform = "org.postgresql.Driver"
+  if(form.value.selectePlateforme == 2){
+    this.selectePlateforme = "org.postgresql.Driver"
   }
-  let datasource = new DataSource(this.url,this.user,this.password,this.platform,this.name)
+  
+  
+  let datasource = new DataSource(form.value.url,form.value.user,form.value.password,this.selectePlateforme,form.value.name)
   this.service.saveDataSource(datasource,localStorage.getItem('currentUser')).subscribe((res)=>{
     if(res){
       this.servicemodal.dismissAll()
       this.getAllDataSource()
     }
   })
+
 }
 
 

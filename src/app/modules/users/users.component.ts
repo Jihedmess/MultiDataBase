@@ -4,6 +4,8 @@ import { Observable, from } from 'rxjs';
 import { UserService } from '../../service/user.service';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {UserUpdate} from '../../service/userUpadate'
+import { NgForm } from '@angular/forms';
+import {User} from '../../service/User'
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -17,8 +19,9 @@ export class UsersComponent implements OnInit {
   email:any
   password:any
   role:any
+  ListeRole = new Array()
   closeResult: string;
-  constructor(private service : UserService , private route :Router,private servicemodal :NgbModal) { }
+  constructor(private service : UserService , private route :Router,private servicemodal :NgbModal ,private router:Router) { }
   ngOnInit() {  
     this.getAllUser()
   
@@ -41,7 +44,16 @@ export class UsersComponent implements OnInit {
    })
    }
 
-
+   openAddUser(content ) {
+    
+  
+    this.servicemodal.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+  
 
    
    openAddDatasource(content,id ) {
@@ -81,10 +93,31 @@ export class UsersComponent implements OnInit {
 
    })
  }
-  
+ onSubmit(form: NgForm) {
+   this.ListeRole = new Array()
+   if(form.value.selectePlateforme == 1){
+   this.ListeRole.push("admin")
+   }else{
+    this.ListeRole.push("user")
+   
+   }
+   let user = new User (form.value.name,form.value.mail,form.value.password,this.ListeRole)
+   
+   this.service.saveUser(user).subscribe((res)=>{
+    console.log(res)
+    if(res){
+      
+      this.router.navigate(['/home/users']);
+    }else{
+      this.router.navigate(['/home/addUser']);
+    }
+    
+    
+  })    
+}
 
 
-  
+
 
  
   

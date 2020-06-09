@@ -2,7 +2,7 @@
   
 <div class="container">  
   
-  <div class="table-wrapper">
+  <div class="table-wrapper" >
     <div class="table-title">
       <div class="row">
         <div class="col-sm-6">
@@ -18,7 +18,7 @@
          </div>
       </div>
     </div>
-    <table class="table table-hover">
+    <table class="table table-hover"  style="width: 78%;margin-left: 7%;">
       <thead>
         <tr >
         
@@ -27,7 +27,7 @@
           <th scope="col">Name</th>
           
           <th style="
-          padding-left: 27%;
+          padding-left: 58%;
       ">Action</th>
         </tr>
       </thead>
@@ -40,7 +40,7 @@
           
          
           
-          <td style=" padding-left: 15%;">
+          <td style=" padding-left: 46%;">
 
               <button class="button" style="margin-left: 10px" (click)="UpdateAddDatasource(content1,item.id)">Modifier</button>
 
@@ -80,28 +80,28 @@
   </div>
   <div class="modal-body">
       
-          <form>
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
               <div class="form-group">
 
                 <p>Url</p>
-                  <input type="text"  class="form-control" name="url" id="url"  placeholder="Enter your url" [(ngModel)]="url" required />
+                  <input type="text"  class="form-control" name="url" id="url"  placeholder="Enter your url" ngModel required />
               </div>
 
                 
 
               <div class="form-group">
                   <p>User</p>
-                  <input type="text"  class="form-control" name="user"  placeholder="Enter your user" [(ngModel)]="user" required/>
+                  <input type="text"  class="form-control" name="user"  placeholder="Enter your user" ngModel required/>
               </div>
 
               <div class="form-group">
                   <p>Name</p>
-                  <input type="text"  class="form-control" name="name"  placeholder="Enter your user" [(ngModel)]="name"/>
+                  <input type="text"  class="form-control" name="name"  placeholder="Enter your user" ngModel required/>
               </div>
 
               <div class="form-group">
                   <p>Password</p>
-                  <input type="password"  class="form-control" name="password" placeholder="enter your password" [(ngModel)]="password" required/>
+                  <input type="password"  class="form-control" name="password" placeholder="enter your password" ngModel required/>
               </div>
 
               <div class="form-group">
@@ -109,7 +109,7 @@
               </div>
                   
               <div class="form-group">   
-              <select [(ngModel)]="platform"  class="form-control" name="selectePlateforme" required>
+              <select [(ngModel)]="platform"  class="form-control" name="selectePlateforme" ngModel required>
                     <option  [ngValue]="2">org.postgresql.Driver</option>
                     <option  [ngValue]="1">com.mysql.jdbc.Driver</option>
               </select>
@@ -117,13 +117,13 @@
                     
                 
              
-
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-outline-dark"  [disabled]="f.invalid"  >Ajouter</button>
+              </div>
           </form>
       
   </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark"  (click)="add()" >Ajouter</button>
-  </div>
+  
 </ng-template>
 
 
@@ -165,12 +165,6 @@
         <input type="text" name="platform"  class="form-control"  placeholder="enter your platform" [(ngModel)]="platformupdate"/>
         
        
-   
-          
-          
-       
-
-
     </form>
   </div>
   <div class="modal-footer">
