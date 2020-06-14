@@ -60,7 +60,9 @@ export class PostsComponent implements OnInit {
     }
 
     onSubmit(form: NgForm) {
-      let fonct = new Fonctionalite(form.value.name,form.value.description,form.value.file1,form.value.file2,form.value.file3,form.value.url);
+      console.log('test la valeur du champ description ')
+      console.log(form.value.description)
+      let fonct = new Fonctionalite(form.value.name,form.value.description, this.file1, this.file2, this.file3,form.value.url);
       console.log(form.value)
       this.service.savefonct1(fonct,localStorage.getItem('currentUser')).subscribe((res=>{
         console.log(res)
