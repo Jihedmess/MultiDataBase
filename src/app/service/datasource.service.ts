@@ -1,16 +1,24 @@
 import { Injectable } from '@angular/core';
 import {HttpClient,HttpHeaders} from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class DatasourceService {
+
+database = new Subject<any>()
+
+
+
+
   constructor(private http:HttpClient){
     this.http = http;
   }
-
+ changevalue(value){
+   this.database.next(value)
+ }
   saveDataSource(user:any,token): Observable<any>{
     const headers = new HttpHeaders({'Authorization':'Bearer '+token});
    return this.http.post("http://localhost:8080/api/adddb",user,{headers:headers})
@@ -42,6 +50,12 @@ export class DatasourceService {
    updateDataSource(datasource:any,token): Observable<any>{
     const headers = new HttpHeaders({'Authorization':'Bearer '+token});
     return this.http.put("http://localhost:8080/api/updatedb",datasource,{headers:headers})
+   }
+
+
+   ChekSQLDataSource(objet:any): Observable<any>{
+    const headers = new HttpHeaders({'Authorization':'Bearer '});
+    return this.http.post("http://localhost:9090/checkSql",objet)
    }
   
   }

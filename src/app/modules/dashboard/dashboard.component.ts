@@ -126,8 +126,9 @@ updateDatsource(){
 
 
 connect(item){
-  localStorage.setItem('urlDataBase',item.url);
   localStorage.setItem('IdDataBase',item.id);
+ this.service.changevalue(item.name)
+  this.router.navigate(['/home/fonctionnalites']);
   
 }
 }

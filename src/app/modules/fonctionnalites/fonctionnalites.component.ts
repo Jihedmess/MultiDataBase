@@ -4,6 +4,7 @@ import { ActivatedRoute ,Router } from '@angular/router';
 import { DatasourceService } from 'src/app/service/datasource.service';
 import {Request} from '../../service/request';
 import { from } from 'rxjs';
+import { SQLBody } from 'src/app/service/SQLBody';
 
 @Component({
   selector: 'app-fonctionnalites',
@@ -18,13 +19,22 @@ export class FonctionnalitesComponent implements OnInit {
   request_Driver:any;
   request_user:any;
   request_password:any;
+  id_base :any
+
 
   constructor(private service:UserService, private route: ActivatedRoute , private router :Router ,private dataservice:DatasourceService) { }
 
   ngOnInit(): void {
-    this.url=this.route.snapshot.params['url'];
-
-    console.log(this.url)
+    this.dataservice.getDataSourcebyId(localStorage.getItem('IdDataBase'),localStorage.getItem('currentUser')).subscribe((res)=>{
+     
+      let  sqlbody = new SQLBody(res.url,res.user,res.password,res.plateforme)
+      
+      this.dataservice.ChekSQLDataSource(sqlbody).subscribe((res)=>{
+        console.log('test check datasource with fonct')
+        console.log(res)
+      })
+      
+    })
     
     this.getAllfonctionalite()
     

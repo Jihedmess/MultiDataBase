@@ -19,7 +19,10 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(){
+    
       localStorage.removeItem('currentUser');
+      localStorage.removeItem('IdDataBase');
+      localStorage.removeItem('NameDataBase');
       this.router.navigate(['']);
   }
 

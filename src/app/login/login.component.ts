@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
      console.log(res)
       if(res.accessToken != null){
         localStorage.setItem('currentUser',res.accessToken);
-        this.router.navigate(['/home/users']);
+        this.router.navigate(['/home/environnements']);
       }else{
         this.router.navigate(['']);
       }
