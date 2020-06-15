@@ -57,5 +57,10 @@ database = new Subject<any>()
     const headers = new HttpHeaders({'Authorization':'Bearer '});
     return this.http.post("http://localhost:9090/checkSql",objet)
    }
+
+   UpdateSql(sqlUpdate:any): Observable<any>{
+    const headers = new HttpHeaders({'Authorization':'Bearer '});
+   return this.http.post("http://localhost:9090/UpdateSQL",sqlUpdate)
+  }
   
   }

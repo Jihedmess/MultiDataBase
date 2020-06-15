@@ -42,8 +42,8 @@
     </mat-card-content>
     <mat-card-actions  align="end">
       
-      <button class="button">Activer</button>
-      <button class="button">Desactiver</button>
+      <button class="button" [disabled]="item.result != 0 " (click)="UpdateSQL(item.name,item.fileActivation)">Activer</button>
+      <button class="button"[disabled]="item.result == 0 " (click)="UpdateSQL(item.name,item.filaDesactivation)">Desactiver</button>
       
     </mat-card-actions>
  

@@ -5,6 +5,7 @@ import { DatasourceService } from 'src/app/service/datasource.service';
 import {Request} from '../../service/request';
 import { from } from 'rxjs';
 import { SQLBody } from 'src/app/service/SQLBody';
+import {ActivateDesactivite} from 'src/app/service/ActivateDesactivite'
 
 @Component({
   selector: 'app-fonctionnalites',
@@ -32,11 +33,12 @@ export class FonctionnalitesComponent implements OnInit {
       this.dataservice.ChekSQLDataSource(sqlbody).subscribe((res)=>{
         console.log('test check datasource with fonct')
         console.log(res)
+        this.data = res
       })
       
     })
     
-    this.getAllfonctionalite()
+    //this.getAllfonctionalite()
     
   }
 
@@ -50,4 +52,22 @@ export class FonctionnalitesComponent implements OnInit {
     this.router.navigate(['/home/addfonct/'+this.url]);
    }
 
+
+   UpdateSQL(item1,item2){
+    this.dataservice.getDataSourcebyId(localStorage.getItem('IdDataBase'),localStorage.getItem('currentUser')).subscribe((res)=>{
+     
+      let   activateDesactivite = new ActivateDesactivite(res.url,res.user,res.password,res.plateforme,item1,item2)
+      
+      this.dataservice.UpdateSql(activateDesactivite).subscribe((res)=>{
+        console.log('test update sql with fonct')
+        console.log(res)
+        this.data = res
+      })
+      
+    })
+    
+
+   }
+
+   
 }
