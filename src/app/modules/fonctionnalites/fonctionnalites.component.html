@@ -12,7 +12,12 @@
                   <div class="col-sm-6" style="
                   margin-left: 264px;
               ">
-                    <a (click)="AddFonctionalite()" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Ajouter un fonctionalité</span></a>
+                   
+                   <form class="form-inline waves-light" mdbWavesEffect>
+                    <div class="md-form mt-0">
+                      <input class="form-control mr-sm-2" type="text" placeholder="Search" [(ngModel)]="search">
+                    </div>
+                  </form>
                 </div>
                  </div>
               </div>
@@ -24,7 +29,7 @@
     
 
 
-  <mat-card class="example-card" *ngFor="let item of data" >
+  <mat-card class="example-card" *ngFor="let item of (data | filter:search)as folder" >
     <mat-card-header>
       
       <mat-card-title>{{item.name}}</mat-card-title>
@@ -47,5 +52,4 @@
       
     </mat-card-actions>
  
-
-  
+   

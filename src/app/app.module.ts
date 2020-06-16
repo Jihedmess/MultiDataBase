@@ -14,7 +14,9 @@ import {AuthGuard} from './auth.guard';
 import {DatasourceService} from './service/datasource.service';
 import { FonctionnalitesComponent } from './modules/fonctionnalites/fonctionnalites.component';
 import {A11yModule} from '@angular/cdk/a11y';
-
+import { DxDataGridModule,
+  DxBulletModule,DxButtonModule,
+  DxTemplateModule } from 'devextreme-angular';
 import {PortalModule} from '@angular/cdk/portal';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 
@@ -41,6 +43,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatCardModule} from '@angular/material/card';
+import { FilterPipe } from './filter.pipe';
 
 
 @NgModule({
@@ -78,6 +81,7 @@ import {MatCardModule} from '@angular/material/card';
     AppComponent,
     LoginComponent,
     FonctionnalitesComponent,
+    FilterPipe
   ],
   imports: [
     MatCardModule,
@@ -87,7 +91,11 @@ import {MatCardModule} from '@angular/material/card';
     DefaultModule,
     FormsModule,
     HttpClientModule,
-    MatTabsModule
+    MatTabsModule,
+    DxDataGridModule,
+    DxTemplateModule,
+    DxBulletModule,
+    DxButtonModule
    
   ],
   providers: [
