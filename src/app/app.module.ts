@@ -14,9 +14,7 @@ import {AuthGuard} from './auth.guard';
 import {DatasourceService} from './service/datasource.service';
 import { FonctionnalitesComponent } from './modules/fonctionnalites/fonctionnalites.component';
 import {A11yModule} from '@angular/cdk/a11y';
-import { DxDataGridModule,
-  DxBulletModule,DxButtonModule,
-  DxTemplateModule } from 'devextreme-angular';
+
 import {PortalModule} from '@angular/cdk/portal';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 
@@ -91,11 +89,8 @@ import { FilterPipe } from './filter.pipe';
     DefaultModule,
     FormsModule,
     HttpClientModule,
-    MatTabsModule,
-    DxDataGridModule,
-    DxTemplateModule,
-    DxBulletModule,
-    DxButtonModule
+    MatTabsModule
+   
    
   ],
   providers: [
