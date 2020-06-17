@@ -13,6 +13,7 @@ import {UserService} from './service/user.service';
 import {AuthGuard} from './auth.guard';
 import {DatasourceService} from './service/datasource.service';
 import { FonctionnalitesComponent } from './modules/fonctionnalites/fonctionnalites.component';
+
 import {A11yModule} from '@angular/cdk/a11y';
 
 import {PortalModule} from '@angular/cdk/portal';
@@ -42,6 +43,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatCardModule} from '@angular/material/card';
 import { FilterPipe } from './filter.pipe';
+import { GestionFonctionnalitesComponent } from './modules/GestionFonctionalite/Gestionfonctionnalites.component';
 
 
 @NgModule({
@@ -79,7 +81,9 @@ import { FilterPipe } from './filter.pipe';
     AppComponent,
     LoginComponent,
     FonctionnalitesComponent,
-    FilterPipe
+    FilterPipe,
+    GestionFonctionnalitesComponent
+    
   ],
   imports: [
     MatCardModule,

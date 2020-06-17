@@ -20,7 +20,8 @@ import { UpdateUserComponent } from 'src/app/modules/update-user/update-user.com
     DefaultComponent,
     UsersComponent,
     AddUserComponent,
-    UpdateUserComponent
+    UpdateUserComponent,
+
   ],
   imports: [
     CommonModule,

@@ -56,5 +56,15 @@ export class UserService {
     const headers = new HttpHeaders({'Access-Control-Allow-Origin':'*'});
     return this.http.post("http://localhost:9090/listeFonct7",fonct)
    }
+
+   deleteFonct(id:any,token): Observable<any>{
+    const headers = new HttpHeaders({'Authorization':'Bearer '+token});
+    return this.http.delete("http://localhost:8080/api/deletefonct/"+id,{ headers: headers })
+   }
+
+   updateFonct(fonct:any,token): Observable<any>{
+    const headers = new HttpHeaders({'Authorization':'Bearer '+token});
+    return this.http.put("http://localhost:8080/api/updatefonct",fonct,{ headers: headers })
+   }
   
   }

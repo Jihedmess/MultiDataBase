@@ -9,6 +9,7 @@ import { UpdateUserComponent } from './modules/update-user/update-user.component
 import { AddUserComponent } from './modules/add-user/add-user.component';
 import {AuthGuard} from '../app/auth.guard';
 import { FonctionnalitesComponent } from './modules/fonctionnalites/fonctionnalites.component';
+import { GestionFonctionnalitesComponent } from './modules/GestionFonctionalite/Gestionfonctionnalites.component';
 
 
 const routes: Routes = [
@@ -31,6 +32,10 @@ const routes: Routes = [
      path:'fonctionnalites',
      component: FonctionnalitesComponent, canActivate:[AuthGuard]
    },
+   {
+    path:'listFonctionalite',
+    component: GestionFonctionnalitesComponent,
+  },
     {
       path:'users',
       component: UsersComponent,canActivate:[AuthGuard]

@@ -8,16 +8,21 @@
     </div>
     <mat-divider></mat-divider>
    <h2 matSubheader> Pages</h2> 
-
-    <a mat-list-item routerActive="List-item-active" routerLink="environnements">Environnements </a>
-    <a mat-list-item routerActive="List-item-active" routerLink="/home/fonctionnalites">Fonctionnalites</a>
-
+ 
+    <a mat-list-item routerActive="List-item-active"  [matMenuTriggerFor]="menu" >Environnements </a>
+    <div style="margin-left: 18%;">
+    <mat-menu #menu="matMenu" xPosition="after"  >
+        <button mat-menu-item routerLink="environnements">Environnements</button>
+        <button mat-menu-item routerLink="/home/fonctionnalites">Fonctionnalites</button>
+      </mat-menu>
+    
+    </div>
+    <a mat-list-item routerActive="List-item-active" routerLink="/home/listFonctionalite">Gestion des Fonctionnalités</a>
     <a mat-list-item routerActive="List-item-active" routerLink="/home/addfonct">Ajouter Fonctionnalité</a>
     <a mat-list-item routerActive="List-item-active" routerLink="/home/users">Utilisateurs</a>
     
 
     
-  
      
 
  
