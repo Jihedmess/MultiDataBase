@@ -27,7 +27,7 @@ export class FonctionnalitesComponent implements OnInit {
   constructor(private service:UserService, private route: ActivatedRoute , private router :Router ,private dataservice:DatasourceService) { }
 
   ngOnInit(): void {
-    /*this.dataservice.getDataSourcebyId(localStorage.getItem('IdDataBase'),localStorage.getItem('currentUser')).subscribe((res)=>{
+    this.dataservice.getDataSourcebyId(localStorage.getItem('IdDataBase'),localStorage.getItem('currentUser')).subscribe((res)=>{
      
       let  sqlbody = new SQLBody(res.url,res.user,res.password,res.plateforme)
       
@@ -37,9 +37,9 @@ export class FonctionnalitesComponent implements OnInit {
         this.data = res
       })
       
-    })*/
+    })
     
-    this.getAllfonctionalite()
+    //this.getAllfonctionalite()
     
   }
 
