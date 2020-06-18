@@ -30,6 +30,10 @@ export class UserService {
     const headers = new HttpHeaders({'Authorization':'Bearer '+token});
     return this.http.get("http://localhost:8080/api/auth/findById/"+id ,{ headers: headers })
    }
+   getFoncbyId(id,token): Observable<any>{
+    const headers = new HttpHeaders({'Authorization':'Bearer '+token});
+    return this.http.get("http://localhost:8080/api/findfoncById/"+id ,{ headers: headers })
+   }
 
    deleteUser(id:any): Observable<any>{
     const headers = new HttpHeaders({'Content-Type':'application/json'});

@@ -8,6 +8,7 @@ import { DatasourceService } from 'src/app/service/datasource.service';
 })
 export class SidebarComponent implements OnInit {
   database :any
+  visible = false
   constructor(private service:DatasourceService) { }
    
   ngOnInit(): void {

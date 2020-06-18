@@ -9,12 +9,28 @@
     <mat-divider></mat-divider>
    <h2 matSubheader> Pages</h2> 
  
-    <a mat-list-item routerActive="List-item-active"  [matMenuTriggerFor]="menu" >Environnements </a>
-    <div style="margin-left: 18%;">
-    <mat-menu #menu="matMenu" xPosition="after"  >
-        <button mat-menu-item routerLink="environnements">Environnements</button>
-        <button mat-menu-item routerLink="/home/fonctionnalites">Fonctionnalites</button>
-      </mat-menu>
+  
+
+
+
+
+
+
+
+    <a mat-list-item routerActive="List-item-active" (click)="visible = !visible"  >Environnements  <mat-icon aria-hidden="false" aria-label="Example home icon">play_arrow</mat-icon> </a>
+   
+    <div class="w3-panel w3-red" *ngIf="visible">
+    
+
+        <mat-selection-list #shoes [multiple]="false">
+            <mat-list-option>
+                <a mat-list-item routerActive="List-item-active" routerLink="environnements">Gestion des Environnements </a>
+            </mat-list-option>
+            <mat-list-option>
+                <a mat-list-item routerActive="List-item-active" routerLink="/home/fonctionnalites">Ajouter Fonctionnalité</a>
+            </mat-list-option>
+          </mat-selection-list>
+       
     
     </div>
     <a mat-list-item routerActive="List-item-active" routerLink="/home/listFonctionalite">Gestion des Fonctionnalités</a>
