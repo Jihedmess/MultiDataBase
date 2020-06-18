@@ -6,6 +6,7 @@ import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import {Fonctionalite} from '../../service/fonctionalite'
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { FonctionaliteUpdate } from 'src/app/service/fonctionaliteupdate';
 @Component({
   selector: 'app-Gestionfonctionnalites',
   templateUrl: './Gestionfonctionnalites.component.html',
@@ -17,6 +18,13 @@ export class GestionFonctionnalitesComponent implements OnInit {
   file2:any
   file3:any
   closeResult: string;
+  id_delete :any
+  name:any
+  description :any
+  url:any
+  id_update :any
+ 
+
 
 
   constructor(private service:UserService, private route: ActivatedRoute , private router :Router ,private dataservice:DatasourceService
@@ -68,18 +76,48 @@ export class GestionFonctionnalitesComponent implements OnInit {
     let fonct = new Fonctionalite(form.value.name,form.value.description, this.file1, this.file2, this.file3,form.value.url);
     console.log(form.value)
     this.service.savefonct1(fonct,localStorage.getItem('currentUser')).subscribe((res=>{
-      console.log(res)
-      if(res){
-        this.toastr.success('Add fonctionzlité with success','Add Fonctionalité')
-        this.getAllfonctionalite()
-
-      }
+      this.getAllfonctionalite()
+      
     }))
+    this.servicemodal.dismissAll()
+    this.toastr.success('Add fonctionzlité with success','Add Fonctionalité')
+       
 }
   
 openAddDatasource(content ) {
     
   
+  this.servicemodal.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.closeResult = `Closed with: ${result}`;
+  }, (reason) => {
+    this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+  });
+}
+
+openUpdateFonctionalite(content ,item ) {
+    this.id_update = item
+  this.service.getFoncbyId(item,localStorage.getItem('currentUser')).subscribe((res)=>{
+    console.log("test api getFonct by id")
+    console.log(res)
+    this.name = res.name
+    this.description = res.desscription
+    this.url = res.url
+    this.file1 =  res.fileActivation
+    this.file2 = res.filaDesactivation
+    this.file3 = res.fileChek
+    
+  })
+  this.servicemodal.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.closeResult = `Closed with: ${result}`;
+  }, (reason) => {
+    this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+  });
+}
+
+
+openDelete(content ,item ) {
+    
+  this.id_delete = item
   this.servicemodal.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
     this.closeResult = `Closed with: ${result}`;
   }, (reason) => {
@@ -98,22 +136,23 @@ openAddDatasource(content ) {
   }
   
    Modifier(form: NgForm){
-    let fonct = new Fonctionalite(form.value.name,form.value.description, this.file1, this.file2, this.file3,form.value.url);
+    let fonct = new FonctionaliteUpdate(this.id_update,form.value.name,form.value.description, this.file1, this.file2, this.file3,form.value.url);
     console.log(form.value)
-    this.service.updateFonct(fonct,localStorage.getItem('currentUser')).subscribe((res=>{
-      console.log(res)
-      if(res){
-        
-        this.getAllfonctionalite()
-
-      }
+    this.service.updateFonct(fonct,localStorage.getItem('currentUser')).subscribe((res=>{ 
+      this.getAllfonctionalite()
+      
+     
     }))
+    this.getAllfonctionalite()
+    this.servicemodal.dismissAll()
+    this.toastr.success('Update fonctionzlité with success','Update Fonctionalité')
    }
-   Supprimer(item){
-     this.service.deleteFonct(item,localStorage.getItem('currentUser')).subscribe((res)=>{
-       
-       this.getAllfonctionalite()
+   Supprimer(){
+     this.service.deleteFonct(this.id_delete,localStorage.getItem('currentUser')).subscribe((res)=>{
+      this.getAllfonctionalite()
      })
+     this.servicemodal.dismissAll()
+     this.getAllfonctionalite()
    }
 
    

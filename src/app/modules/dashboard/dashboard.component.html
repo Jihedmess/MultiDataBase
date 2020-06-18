@@ -31,7 +31,7 @@
       ">Action</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody *ngIf="is_data_arrived">
  
         
         <tr *ngFor="let item of listDataSource" >
@@ -44,7 +44,7 @@
 
               <button class="button" style="margin-left: 10px" (click)="UpdateAddDatasource(content1,item.id)">Modifier</button>
 
-              <button class="button" style="margin-left: 10px" (click)="openAddDatasource(content2)">Supprimer</button>
+              <button class="button" style="margin-left: 10px" (click)="UpdateAddDatasource(content2,item.id)">Supprimer</button>
 
               <button class="button" style="margin-left: 10px"(click)="connect(item)" >Consulter  </button>
           

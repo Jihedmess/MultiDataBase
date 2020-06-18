@@ -5,6 +5,7 @@ import {DataSource} from '../../service/Datasource';
 import {DataSourceupdate} from '../../service/Datasourceupdate'
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -27,7 +28,9 @@ export class DashboardComponent implements OnInit {
    nameupdate:any
    disabled_button = true
    selectePlateforme:any
-  constructor(private service:DatasourceService , private servicemodal :NgbModal,private router:Router) { }
+   is_data_arrived = false
+  constructor(private service:DatasourceService , private servicemodal :NgbModal,
+    private router:Router,private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getAllDataSource()
@@ -35,23 +38,24 @@ export class DashboardComponent implements OnInit {
   
 
   getAllDataSource(){
+    this.is_data_arrived = false
     console.log(localStorage.getItem('currentUser').valueOf())
     this.service.getDataSources(localStorage.getItem('currentUser').valueOf()).subscribe((res)=>{
     this.listDataSource =res
+    this.is_data_arrived = true
     })
   }
 
 
   delete(id:any){
-    this.service.deleteDataSources(id,localStorage.getItem('currentUser').valueOf()).subscribe((res)=>{
-      if(res){
-        
-      this.getAllDataSource()
-
-      }
-      
+    this.service.deleteDataSources(this.idupadate,localStorage.getItem('currentUser').valueOf()).subscribe((res)=>{
+     
     })
     this.getAllDataSource()
+    this.servicemodal.dismissAll()
+ 
+  
+
   }
     
 
@@ -86,11 +90,11 @@ onSubmit(form: NgForm){
   
   let datasource = new DataSource(form.value.url,form.value.user,form.value.password,this.selectePlateforme,form.value.name)
   this.service.saveDataSource(datasource,localStorage.getItem('currentUser')).subscribe((res)=>{
-    if(res){
-      this.servicemodal.dismissAll()
-      this.getAllDataSource()
-    }
+    this.getAllDataSource()
   })
+  this.toastr.success('Add Enveronnement with success','Add Enveronnement')
+  this.servicemodal.dismissAll()
+  
 
 }
 
@@ -106,6 +110,7 @@ UpdateAddDatasource(content,id){
     this.passwordupdate = res.password
     this.platformupdate = res.platform
   })
+  
   this.servicemodal.open(content, {ariaLabelledBy: 'modal-basic-title-update'}).result.then((result) => {
     this.closeResult = `Closed with: ${result}`;
   }, (reason) => {
@@ -117,11 +122,11 @@ UpdateAddDatasource(content,id){
 updateDatsource(){
   let datasource = new DataSourceupdate(this.idupadate,this.urlupdate,this.userupdate,this.passwordupdate,this.platformupdate,this.nameupdate);
   this.service.updateDataSource(datasource,localStorage.getItem('currentUser')).subscribe((res)=>{
-    if(res){
-      this.getAllDataSource()
-      this.servicemodal.dismissAll()
-    }
+  
   })
+  this.servicemodal.dismissAll()
+  this.getAllDataSource()
+  this.toastr.success('Update Enveronnement with success','Update Enveronnement')
 }
 
 

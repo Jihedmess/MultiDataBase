@@ -6,6 +6,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {UserUpdate} from '../../service/userUpadate'
 import { NgForm } from '@angular/forms';
 import {User} from '../../service/User'
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -21,20 +22,23 @@ export class UsersComponent implements OnInit {
   role:any
   ListeRole = new Array()
   closeResult: string;
-  constructor(private service : UserService , private route :Router,private servicemodal :NgbModal ,private router:Router) { }
+  constructor(private service : UserService , private route :Router,
+    private servicemodal :NgbModal ,private router:Router,private toastr: ToastrService) { }
   ngOnInit() {  
     this.getAllUser()
   
 
    }
-   delete(id:any){
-     this.service.deleteUser(id).subscribe((res)=>{
-       if(res){
-         this.route.navigate(['/home/users'])
-         this.getAllUser()
+   delete(){
+     this.service.deleteUser(this.id).subscribe((res)=>{
+       
+        
 
-       }
+
+       
      })
+     this.servicemodal.dismissAll()
+         this.getAllUser()
    }
 
    getAllUser(){
@@ -90,6 +94,7 @@ export class UsersComponent implements OnInit {
    
        this.getAllUser()
        this.servicemodal.dismissAll()
+       this.toastr.success('Update User with success','Update User')
 
    })
  }
@@ -105,13 +110,9 @@ export class UsersComponent implements OnInit {
    
    this.service.saveUser(user).subscribe((res)=>{
     console.log(res)
-    if(res){
-      
-      this.router.navigate(['/home/users']);
-    }else{
-      this.router.navigate(['/home/addUser']);
-    }
-    
+    this.getAllUser()
+    this.servicemodal.dismissAll()
+    this.toastr.success('Add User with success','Add User')
     
   })    
 }

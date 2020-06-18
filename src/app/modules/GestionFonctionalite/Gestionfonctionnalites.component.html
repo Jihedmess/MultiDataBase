@@ -38,8 +38,8 @@
     </mat-card-content>
     <mat-card-actions  align="end">
       
-      <button class="button" (click)="openAddDatasource(content1)"  >Modifier</button>
-      <button class="button" (click)="Supprimer(item.id)">Supprimer</button>
+      <button class="button" (click)="openUpdateFonctionalite(content1,item.id)"  >Modifier</button>
+      <button class="button" (click)="openDelete(content2,item.id)">Supprimer</button>
       
     </mat-card-actions>
  </mat-card>
@@ -111,32 +111,32 @@
           <div class="form-group">
 
        <p>Nom</p>
-         <input type="text" name="name" id="name"  class="form-control"   placeholder="Enter the name" ngModel  required/>
+         <input type="text" name="name" id="name" [(ngModel)]="name"  class="form-control"   placeholder="Enter the name" ngModel  required/>
        </div>
        <div class="form-group">
          <p> Description</p>
-         <textarea type="text" name="description"  class="form-control"  rows="10" cols="78%" placeholder="Enter a description"  ngModel required> </textarea>
+         <textarea type="text" name="description" [(ngModel)]="description" class="form-control"  rows="10" cols="78%" placeholder="Enter a description"  ngModel required> </textarea>
        </div>
        
        <div class="form-group">
 
          <p>URL</p>
-           <input type="text" name="url" id="url"  class="form-control"   placeholder="Enter an URL" ngModel  required/>
+           <input type="text" name="url" id="url" [(ngModel)]="url"  class="form-control"   placeholder="Enter an URL" ngModel  required/>
          </div>
 
          <div class="form-group">
          <p>Fichier d'activation</p>
-         <input type="file" id="file1" name="file1"  class="form-control"   (change)="onFileSelected1($event)" ngModel  required />
+         <input type="file" id="file1" name="file1" [(ngModel)]="file1"  class="form-control"   (change)="onFileSelected1($event)" ngModel  required />
          </div>
 
          <div class="form-group">
          <p>Fichier de désactivation</p>
-         <input type="file" id="file2" name="file2"  class="form-control"    (change)="onFileSelected2($event)" ngModel  required />
+         <input type="file" id="file2" name="file2" [(ngModel)]="file2"  class="form-control"    (change)="onFileSelected2($event)" ngModel  required />
          </div>
 
          <div class="form-group">
          <p>Fichier de check</p>
-         <input type="file" id="file3" name="file3"  class="form-control"    (change)="onFileSelected3($event)" ngModel  required />
+         <input type="file" id="file3" name="file3"  [(ngModel)]="file3"  class="form-control"    (change)="onFileSelected3($event)" ngModel  required />
          </div>
  
          <mat-card-actions  align="end">
@@ -154,4 +154,21 @@
     </ng-template> 
 
 
-    
+    <ng-template #content2 let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title-update">attention  la Fonctionnalité sera supprimer définitivement voulez vous continuer !!</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+          
+          <button class="button"  (click)="modal.dismiss('Cross click')"  >Annuler</button>
+          <button class="button"  (click)="Supprimer()" >Supprimer</button>
+          
+        
+      </div>  
+     
+        
+    </ng-template>
