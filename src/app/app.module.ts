@@ -50,8 +50,28 @@ import { GestionFonctionnalitesComponent } from './modules/GestionFonctionalite/
   exports: [
     A11yModule,
    
+    
+    
+    PortalModule,
+    ScrollingModule
+  ],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    FonctionnalitesComponent,
+    FilterPipe,
+    GestionFonctionnalitesComponent
+    
+  ],
+  imports: [
+    MatCardModule,
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    DefaultModule,
+    FormsModule,
+    HttpClientModule,
     MatButtonModule,
-   
     MatDividerModule,
    
     MatIconModule,
@@ -74,26 +94,6 @@ import { GestionFonctionnalitesComponent } from './modules/GestionFonctionalite/
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    PortalModule,
-    ScrollingModule
-  ],
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    FonctionnalitesComponent,
-    FilterPipe,
-    GestionFonctionnalitesComponent
-    
-  ],
-  imports: [
-    MatCardModule,
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    DefaultModule,
-    FormsModule,
-    HttpClientModule,
-    MatTabsModule
    
    
   ],

@@ -6,6 +6,7 @@ import {Request} from '../../service/request';
 import { from } from 'rxjs';
 import { SQLBody } from 'src/app/service/SQLBody';
 import {ActivateDesactivite} from 'src/app/service/ActivateDesactivite'
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-fonctionnalites',
@@ -22,9 +23,11 @@ export class FonctionnalitesComponent implements OnInit {
   request_user:any;
   request_password:any;
   id_base :any
+  filtre:any
 
 
-  constructor(private service:UserService, private route: ActivatedRoute , private router :Router ,private dataservice:DatasourceService) { }
+  constructor(private service:UserService, private route: ActivatedRoute ,
+     private router :Router ,private dataservice:DatasourceService,private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.dataservice.getDataSourcebyId(localStorage.getItem('IdDataBase'),localStorage.getItem('currentUser')).subscribe((res)=>{
@@ -43,6 +46,56 @@ export class FonctionnalitesComponent implements OnInit {
     
   }
 
+  filtrevalue(){
+    if(this.filtre == 1){
+      this.dataservice.getDataSourcebyId(localStorage.getItem('IdDataBase'),localStorage.getItem('currentUser')).subscribe((res)=>{
+     
+        let  sqlbody = new SQLBody(res.url,res.user,res.password,res.plateforme)
+        
+        this.dataservice.ChekSQLDataSource(sqlbody).subscribe((res)=>{
+          console.log('test check datasource with fonct')
+          console.log(res)
+          this.data = res
+        })
+        
+      })
+    }else if(this.filtre == 1){
+      this.dataservice.getDataSourcebyId(localStorage.getItem('IdDataBase'),localStorage.getItem('currentUser')).subscribe((res)=>{
+     
+        let  sqlbody = new SQLBody(res.url,res.user,res.password,res.plateforme)
+        
+        this.dataservice.ChekSQLDataSource(sqlbody).subscribe((res)=>{
+          console.log('test check datasource with fonct')
+          console.log(res)
+          for (let item of res){
+            if(item.result == 1){
+              this.data.push(item)
+            }
+          }
+          
+        })
+        
+      })
+    }else {
+      this.dataservice.getDataSourcebyId(localStorage.getItem('IdDataBase'),localStorage.getItem('currentUser')).subscribe((res)=>{
+     
+        let  sqlbody = new SQLBody(res.url,res.user,res.password,res.plateforme)
+        
+        this.dataservice.ChekSQLDataSource(sqlbody).subscribe((res)=>{
+          console.log('test check datasource with fonct')
+          console.log(res)
+          for (let item of res){
+            if(item.result == 0){
+              this.data.push(item)
+            }
+          }
+        })
+        
+      })
+    }
+  }
+
+
   getAllfonctionalite(){
     this.service.getFonct1(localStorage.getItem('currentUser')).subscribe((res)=>{
       console.log(res)
@@ -54,7 +107,7 @@ export class FonctionnalitesComponent implements OnInit {
    }
 
 
-   UpdateSQL(item1,item2){
+   UpdateSQLActivite(item1,item2){
     this.dataservice.getDataSourcebyId(localStorage.getItem('IdDataBase'),localStorage.getItem('currentUser')).subscribe((res)=>{
      
       let   activateDesactivite = new ActivateDesactivite(res.url,res.user,res.password,res.plateforme,item1,item2)
@@ -64,6 +117,25 @@ export class FonctionnalitesComponent implements OnInit {
         console.log(res)
         this.data = res
       })
+      this.toastr.success("fonctionnalité "+ item1 +"est activé avec succès" ,'Activé fonctionnalité')
+      
+    })
+    
+
+   }
+
+
+   UpdateSQLDesactivite(item1,item2){
+    this.dataservice.getDataSourcebyId(localStorage.getItem('IdDataBase'),localStorage.getItem('currentUser')).subscribe((res)=>{
+     
+      let   activateDesactivite = new ActivateDesactivite(res.url,res.user,res.password,res.plateforme,item1,item2)
+      
+      this.dataservice.UpdateSql(activateDesactivite).subscribe((res)=>{
+        console.log('test update sql with fonct')
+        console.log(res)
+        this.data = res
+      })
+      this.toastr.success("fonctionnalité "+ item1 +"est désactivé avec succès" ,'Désactivé fonctionnalité')
       
     })
     

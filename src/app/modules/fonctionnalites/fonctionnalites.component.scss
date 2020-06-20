@@ -296,4 +296,9 @@ table.table .avatar {
     margin: 4px 2px;
     border-radius: 8px;
   }
+
+
+  .mat-radio-button ~ .mat-radio-button {
+    margin-left: 5px;
+  }
   

@@ -18,7 +18,7 @@
          </div>
       </div>
     </div>
-    <table class="table table-hover"  style="width: 78%;margin-left: 7%;">
+    <table class="table table-hover"  >
       <thead>
         <tr >
         
@@ -42,9 +42,9 @@
           
           <td style=" padding-left: 46%;">
 
-              <button class="button" style="margin-left: 10px" (click)="UpdateAddDatasource(content1,item.id)">Modifier</button>
+              <button class="button" style="margin-left: 10px" (click)="UpdateAddDatasource(content1,item.id ,item.name)">Modifier</button>
 
-              <button class="button" style="margin-left: 10px" (click)="UpdateAddDatasource(content2,item.id)">Supprimer</button>
+              <button class="button" style="margin-left: 10px" (click)="UpdateAddDatasource(content2,item.id,item.name)">Supprimer</button>
 
               <button class="button" style="margin-left: 10px"(click)="connect(item)" >Consulter  </button>
           
@@ -81,8 +81,12 @@
   <div class="modal-body">
       
     <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <div class="form-group">
+        <p>Name</p>
+        <input type="text"  class="form-control" name="name"  placeholder="Enter your user" ngModel required/>
+    </div>
               <div class="form-group">
-
+                
                 <p>Url</p>
                   <input type="text"  class="form-control" name="url" id="url"  placeholder="Enter your url" ngModel required />
               </div>
@@ -118,7 +122,7 @@
                 
              
               <div class="modal-footer">
-                <button type="submit" class="btn btn-outline-dark"  [disabled]="f.invalid"  >Ajouter</button>
+                <button type="submit" class="button"  [disabled]="f.invalid"  >Ajouter</button>
               </div>
           </form>
       
@@ -136,6 +140,10 @@
   </div>
   <div class="modal-body">
     <form >
+      <div class="form-group">
+        <p>Name</p>
+        <input type="text"  class="form-control" name="name"  placeholder="Enter your user" [(ngModel)]="nameupdate"/>
+      </div>
       <div class="form-group">
 
       <p>Url</p>
@@ -168,13 +176,13 @@
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark"  (click)="updateDatsource()" >Enregistrer</button>
+    <button type="button" class="button"  (click)="updateDatsource()" >Enregistrer</button>
   </div>
 </ng-template>
 
 <ng-template #content2 let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title-update">attention  la base sera supprimer définitivement voulez vous continuer !!</h4>
+    <h4 class="modal-title" id="modal-basic-title-update">attention  la base {{nameupdatenotif}} sera supprimer définitivement voulez vous continuer !!</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>

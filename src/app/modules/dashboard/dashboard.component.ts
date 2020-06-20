@@ -29,6 +29,8 @@ export class DashboardComponent implements OnInit {
    disabled_button = true
    selectePlateforme:any
    is_data_arrived = false
+   nameupdatenotif :any
+   
   constructor(private service:DatasourceService , private servicemodal :NgbModal,
     private router:Router,private toastr: ToastrService) { }
 
@@ -92,7 +94,7 @@ onSubmit(form: NgForm){
   this.service.saveDataSource(datasource,localStorage.getItem('currentUser')).subscribe((res)=>{
     this.getAllDataSource()
   })
-  this.toastr.success('Add Enveronnement with success','Add Enveronnement')
+  this.toastr.success('Add Enveronnement'+form.value.name +' with success','Add Enveronnement')
   this.servicemodal.dismissAll()
   
 
@@ -100,8 +102,9 @@ onSubmit(form: NgForm){
 
 
 
-UpdateAddDatasource(content,id){
+UpdateAddDatasource(content,id ,name){
   this.idupadate=id
+  this.nameupdatenotif = name
   this.service.getDataSourcebyId(id,localStorage.getItem('currentUser')).subscribe((res)=>{
     
     this.urlupdate=res.url
@@ -126,7 +129,7 @@ updateDatsource(){
   })
   this.servicemodal.dismissAll()
   this.getAllDataSource()
-  this.toastr.success('Update Enveronnement with success','Update Enveronnement')
+  this.toastr.success('Update Enveronnement '+this.nameupdate+' with success','Update Enveronnement')
 }
 
 

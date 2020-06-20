@@ -4,18 +4,23 @@
         <div class="table-wrapper">
             <div class="table-title">
               <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                   <h2> <b>Liste des fonctionalités</b></h2>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4" style="margin: auto;">
+                  <mat-radio-group aria-label="Select an option" (click)="filtrevalue()" [(ngModel)]="filtre">
+                    <mat-radio-button value="1">All</mat-radio-button>
+                    <mat-radio-button value="2">Activé</mat-radio-button>
+                    <mat-radio-button value="3">Désactivé</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+                <div class="col-sm-4">
                   
-                  <div class="col-sm-6" style="
-                  margin-left: 264px;
-              ">
-                   
+                  <div class="col-sm-12" >
+
                   
-                    <div class="md-form mt-0">
-                      <input class="form-control mr-sm-2" type="text" placeholder="Search" [(ngModel)]="search">
+                    <div class="md-form mt-12">
+                      <input class="form-control mr-sm-12" type="text" placeholder="Search" [(ngModel)]="search">
                     </div>
                 
                 </div>
@@ -47,9 +52,10 @@
     </mat-card-content>
     <mat-card-actions  align="end">
       
-      <button class="button" [disabled]="item.result != 0 " (click)="UpdateSQL(item.name,item.fileActivation)">Activer</button>
-      <button class="button"[disabled]="item.result == 0 " (click)="UpdateSQL(item.name,item.filaDesactivation)">Desactiver</button>
+      <button class="button" [disabled]="item.result != 0 " (click)="UpdateSQLActivite(item.name,item.fileActivation)">Activer</button>
+      <button class="button"[disabled]="item.result == 0 " (click)="UpdateSQLDesactivite(item.name,item.filaDesactivation)">Desactiver</button>
       
     </mat-card-actions>
  
-   
+   </mat-card>
+   </div>

@@ -24,7 +24,7 @@ export class GestionFonctionnalitesComponent implements OnInit {
   url:any
   id_update :any
  
-
+name_delete:any
 
 
   constructor(private service:UserService, private route: ActivatedRoute , private router :Router ,private dataservice:DatasourceService
@@ -115,8 +115,8 @@ openUpdateFonctionalite(content ,item ) {
 }
 
 
-openDelete(content ,item ) {
-    
+openDelete(content ,item ,name ) {
+    this.name_delete = name
   this.id_delete = item
   this.servicemodal.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
     this.closeResult = `Closed with: ${result}`;
@@ -155,5 +155,7 @@ openDelete(content ,item ) {
      this.getAllfonctionalite()
    }
 
-   
+   onNavigate(item){
+    window.open("http://"+item, '_blank');
+   }
 }
