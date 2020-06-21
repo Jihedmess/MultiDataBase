@@ -23,6 +23,7 @@ export class GestionFonctionnalitesComponent implements OnInit {
   description :any
   url:any
   id_update :any
+  data_arrived = false
  
 name_delete:any
 
@@ -63,9 +64,11 @@ name_delete:any
 
 
   getAllfonctionalite(){
+    this.data_arrived = false
     this.service.getFonct1(localStorage.getItem('currentUser')).subscribe((res)=>{
       console.log(res)
      this.data = res
+     this.data_arrived = true
    })
    }
    
@@ -80,7 +83,7 @@ name_delete:any
       
     }))
     this.servicemodal.dismissAll()
-    this.toastr.success('Add fonctionzlité with success','Add Fonctionalité')
+    this.toastr.success('Add fonctionalité '+ form.value.name +' with success','Add Fonctionalité')
        
 }
   
@@ -136,6 +139,7 @@ openDelete(content ,item ,name ) {
   }
   
    Modifier(form: NgForm){
+    this.data_arrived = false
     let fonct = new FonctionaliteUpdate(this.id_update,form.value.name,form.value.description, this.file1, this.file2, this.file3,form.value.url);
     console.log(form.value)
     this.service.updateFonct(fonct,localStorage.getItem('currentUser')).subscribe((res=>{ 
@@ -145,9 +149,10 @@ openDelete(content ,item ,name ) {
     }))
     this.getAllfonctionalite()
     this.servicemodal.dismissAll()
-    this.toastr.success('Update fonctionzlité with success','Update Fonctionalité')
+    this.toastr.success('Update fonctionalité '+form.value.name +' with success','Update Fonctionalité')
    }
    Supprimer(){
+    this.data_arrived = false
      this.service.deleteFonct(this.id_delete,localStorage.getItem('currentUser')).subscribe((res)=>{
       this.getAllfonctionalite()
      })

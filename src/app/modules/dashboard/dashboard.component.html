@@ -31,7 +31,7 @@
       ">Action</th>
         </tr>
       </thead>
-      <tbody *ngIf="is_data_arrived">
+      <tbody >
  
         
         <tr *ngFor="let item of listDataSource" >
@@ -98,10 +98,7 @@
                   <input type="text"  class="form-control" name="user"  placeholder="Enter your user" ngModel required/>
               </div>
 
-              <div class="form-group">
-                  <p>Name</p>
-                  <input type="text"  class="form-control" name="name"  placeholder="Enter your user" ngModel required/>
-              </div>
+             
 
               <div class="form-group">
                   <p>Password</p>
@@ -170,8 +167,10 @@
           <div class="form-group">
         <p>Platform</p>
       </div>
-        <input type="text" name="platform"  class="form-control"  placeholder="enter your platform" [(ngModel)]="platformupdate"/>
-        
+      <select [(ngModel)]="platformupdate"  class="form-control" name="selectePlateforme" >
+        <option  [ngValue]="2">org.postgresql.Driver</option>
+        <option  [ngValue]="1">com.mysql.jdbc.Driver</option>
+  </select>
        
     </form>
   </div>

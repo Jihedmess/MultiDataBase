@@ -23,14 +23,17 @@ export class FonctionnalitesComponent implements OnInit {
   request_user:any;
   request_password:any;
   id_base :any
-  filtre:any
+  selectedStatus:number 
+  data_arrived=false
+  public selection: string;
 
-
+  public customOption: string = 'customOption';
   constructor(private service:UserService, private route: ActivatedRoute ,
      private router :Router ,private dataservice:DatasourceService,private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.dataservice.getDataSourcebyId(localStorage.getItem('IdDataBase'),localStorage.getItem('currentUser')).subscribe((res)=>{
+      this.data_arrived =false
      
       let  sqlbody = new SQLBody(res.url,res.user,res.password,res.plateforme)
       
@@ -38,6 +41,7 @@ export class FonctionnalitesComponent implements OnInit {
         console.log('test check datasource with fonct')
         console.log(res)
         this.data = res
+        this.data_arrived =true
       })
       
     })
@@ -47,7 +51,11 @@ export class FonctionnalitesComponent implements OnInit {
   }
 
   filtrevalue(){
-    if(this.filtre == 1){
+    this.data = new Array()
+    console.log("test la valeur de filtre")
+    console.log(this.selectedStatus)
+    if(this.selectedStatus == 1){
+      this.data_arrived = false
       this.dataservice.getDataSourcebyId(localStorage.getItem('IdDataBase'),localStorage.getItem('currentUser')).subscribe((res)=>{
      
         let  sqlbody = new SQLBody(res.url,res.user,res.password,res.plateforme)
@@ -56,10 +64,12 @@ export class FonctionnalitesComponent implements OnInit {
           console.log('test check datasource with fonct')
           console.log(res)
           this.data = res
+          this.data_arrived = true
         })
         
       })
-    }else if(this.filtre == 1){
+    }else if(this.selectedStatus == 2){
+      this.data_arrived = false
       this.dataservice.getDataSourcebyId(localStorage.getItem('IdDataBase'),localStorage.getItem('currentUser')).subscribe((res)=>{
      
         let  sqlbody = new SQLBody(res.url,res.user,res.password,res.plateforme)
@@ -68,15 +78,18 @@ export class FonctionnalitesComponent implements OnInit {
           console.log('test check datasource with fonct')
           console.log(res)
           for (let item of res){
+            console.log(item)
             if(item.result == 1){
               this.data.push(item)
             }
           }
+          this.data_arrived = true
           
         })
         
       })
     }else {
+      this.data_arrived = false
       this.dataservice.getDataSourcebyId(localStorage.getItem('IdDataBase'),localStorage.getItem('currentUser')).subscribe((res)=>{
      
         let  sqlbody = new SQLBody(res.url,res.user,res.password,res.plateforme)
@@ -85,10 +98,13 @@ export class FonctionnalitesComponent implements OnInit {
           console.log('test check datasource with fonct')
           console.log(res)
           for (let item of res){
+            console.log(item)
             if(item.result == 0){
+
               this.data.push(item)
             }
           }
+          this.data_arrived = true
         })
         
       })
@@ -108,6 +124,7 @@ export class FonctionnalitesComponent implements OnInit {
 
 
    UpdateSQLActivite(item1,item2){
+    this.data_arrived = false
     this.dataservice.getDataSourcebyId(localStorage.getItem('IdDataBase'),localStorage.getItem('currentUser')).subscribe((res)=>{
      
       let   activateDesactivite = new ActivateDesactivite(res.url,res.user,res.password,res.plateforme,item1,item2)
@@ -116,6 +133,7 @@ export class FonctionnalitesComponent implements OnInit {
         console.log('test update sql with fonct')
         console.log(res)
         this.data = res
+        this.data_arrived = false
       })
       this.toastr.success("fonctionnalité "+ item1 +"est activé avec succès" ,'Activé fonctionnalité')
       
@@ -126,6 +144,7 @@ export class FonctionnalitesComponent implements OnInit {
 
 
    UpdateSQLDesactivite(item1,item2){
+    this.data_arrived = false
     this.dataservice.getDataSourcebyId(localStorage.getItem('IdDataBase'),localStorage.getItem('currentUser')).subscribe((res)=>{
      
       let   activateDesactivite = new ActivateDesactivite(res.url,res.user,res.password,res.plateforme,item1,item2)
@@ -134,12 +153,18 @@ export class FonctionnalitesComponent implements OnInit {
         console.log('test update sql with fonct')
         console.log(res)
         this.data = res
+        this.data_arrived = true
       })
       this.toastr.success("fonctionnalité "+ item1 +"est désactivé avec succès" ,'Désactivé fonctionnalité')
       
     })
     
 
+   }
+
+
+   onNavigate(item){
+    window.open("http://"+item, '_blank');
    }
 
    
