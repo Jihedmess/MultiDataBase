@@ -32,20 +32,7 @@ export class FonctionnalitesComponent implements OnInit {
      private router :Router ,private dataservice:DatasourceService,private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.dataservice.getDataSourcebyId(localStorage.getItem('IdDataBase'),localStorage.getItem('currentUser')).subscribe((res)=>{
-      this.data_arrived =false
-     
-      let  sqlbody = new SQLBody(res.url,res.user,res.password,res.plateforme)
-      
-      this.dataservice.ChekSQLDataSource(sqlbody).subscribe((res)=>{
-        console.log('test check datasource with fonct')
-        console.log(res)
-        this.data = res
-        this.data_arrived =true
-      })
-      
-    })
-    
+    this.getFonctionaliteByData()
     //this.getAllfonctionalite()
     
   }
@@ -63,7 +50,10 @@ export class FonctionnalitesComponent implements OnInit {
         this.dataservice.ChekSQLDataSource(sqlbody).subscribe((res)=>{
           console.log('test check datasource with fonct')
           console.log(res)
-          this.data = res
+          for (let item of res){
+            this.data.push(item)  
+          }
+          
           this.data_arrived = true
         })
         
@@ -124,7 +114,7 @@ export class FonctionnalitesComponent implements OnInit {
 
 
    UpdateSQLActivite(item1,item2){
-    this.data_arrived = false
+
     this.dataservice.getDataSourcebyId(localStorage.getItem('IdDataBase'),localStorage.getItem('currentUser')).subscribe((res)=>{
      
       let   activateDesactivite = new ActivateDesactivite(res.url,res.user,res.password,res.plateforme,item1,item2)
@@ -133,8 +123,9 @@ export class FonctionnalitesComponent implements OnInit {
         console.log('test update sql with fonct')
         console.log(res)
         this.data = res
-        this.data_arrived = false
+        
       })
+      this.getFonctionaliteByData()
       this.toastr.success("fonctionnalité "+ item1 +"est activé avec succès" ,'Activé fonctionnalité')
       
     })
@@ -144,7 +135,7 @@ export class FonctionnalitesComponent implements OnInit {
 
 
    UpdateSQLDesactivite(item1,item2){
-    this.data_arrived = false
+    
     this.dataservice.getDataSourcebyId(localStorage.getItem('IdDataBase'),localStorage.getItem('currentUser')).subscribe((res)=>{
      
       let   activateDesactivite = new ActivateDesactivite(res.url,res.user,res.password,res.plateforme,item1,item2)
@@ -153,8 +144,9 @@ export class FonctionnalitesComponent implements OnInit {
         console.log('test update sql with fonct')
         console.log(res)
         this.data = res
-        this.data_arrived = true
+        
       })
+      this.getFonctionaliteByData()
       this.toastr.success("fonctionnalité "+ item1 +"est désactivé avec succès" ,'Désactivé fonctionnalité')
       
     })
@@ -165,6 +157,28 @@ export class FonctionnalitesComponent implements OnInit {
 
    onNavigate(item){
     window.open("http://"+item, '_blank');
+   }
+
+
+   getFonctionaliteByData(){
+     this.data = new Array()
+    this.dataservice.getDataSourcebyId(localStorage.getItem('IdDataBase'),localStorage.getItem('currentUser')).subscribe((res)=>{
+      this.data_arrived =false
+     
+      let  sqlbody = new SQLBody(res.url,res.user,res.password,res.plateforme)
+      
+      this.dataservice.ChekSQLDataSource(sqlbody).subscribe((res)=>{
+        console.log('test check datasource with fonct')
+        console.log(res)
+        for(let item of res){this.data.push(item)}
+        setTimeout (() => {
+          console.log("Hello from setTimeout");
+       }, 5000);
+        this.data_arrived =true
+      })
+      
+    })
+    
    }
 
    

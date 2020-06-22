@@ -18,29 +18,29 @@
          </div>
       </div>
     </div>
-    <table class="table table-hover"  >
-      <thead>
+    <table class="table"  >
+      
         <tr >
-        
          
-         
-          <th scope="col">Name</th>
+          <td  align="center" style="
+          padding-left: 0%;
+      "><b>Name</b></td>
           
-          <th style="
-          padding-left: 58%;
-      ">Action</th>
+          <td  align="right" style="
+          padding-right: 14%;
+      "><b>Action</b></td>
         </tr>
-      </thead>
+      
       <tbody >
  
         
         <tr *ngFor="let item of listDataSource" >
         
-          <td>{{item.name}} </td>
+          <td align="center">{{item.name}} </td>
           
          
           
-          <td style=" padding-left: 46%;">
+          <td align="right">
 
               <button class="button" style="margin-left: 10px" (click)="UpdateAddDatasource(content1,item.id ,item.name)">Modifier</button>
 
@@ -154,10 +154,7 @@
         <input type="text"  class="form-control" name="user"  placeholder="Enter your user" [(ngModel)]="userupdate"/>
       </div>
 
-      <div class="form-group">
-        <p>Name</p>
-        <input type="text"  class="form-control" name="name"  placeholder="Enter your user" [(ngModel)]="nameupdate"/>
-      </div>
+     
 
         <div class="form-group">
         <p>Password</p>
