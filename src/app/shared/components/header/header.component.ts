@@ -23,6 +23,9 @@ export class HeaderComponent implements OnInit {
       localStorage.removeItem('currentUser');
       localStorage.removeItem('IdDataBase');
       localStorage.removeItem('NameDataBase');
+      localStorage.removeItem('role')
+      localStorage.removeItem('email')
+      localStorage.removeItem('username')
       this.router.navigate(['']);
   }
 
