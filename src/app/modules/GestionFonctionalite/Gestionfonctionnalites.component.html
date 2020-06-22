@@ -86,7 +86,7 @@
  
          <mat-card-actions  align="end">
       
-          <button class="button" type="submit" [disabled]="f.invalid"  >Ajouter</button>
+          <button class="button" type="submit" [disabled]="f.invalid" [ngStyle]="{'background-color':f.invalid ? '#808080' : '#76d7c4' }" >Ajouter</button>
           
           
         </mat-card-actions>

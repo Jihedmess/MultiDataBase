@@ -35,7 +35,8 @@
    
                 <button class="button" style="margin-left: -81px"   (click)="openAddDatasource(content,item.id)" >Modifier</button>
 
-                <button class="button" style="margin-left: 10px" (click)="openAddDatasource(content2,item.id)" [disabled]="roleConnect == item.roles[0].name && emailconnect == item.email" >Supprimer</button>
+                <button class="button" style="margin-left: 10px" (click)="openAddDatasource(content2,item.id)" 
+                [disabled]="roleConnect == item.roles[0].name && emailconnect == item.email" [ngStyle]="{'background-color':roleConnect == item.roles[0].name && emailconnect == item.email ? '#808080' : '#76d7c4' }" >Supprimer</button>
               </td>
               
           </tr>
@@ -51,7 +52,7 @@
   
   <ng-template #content let-modal>
     <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Update Datasource</h4>
+      <h4 class="modal-title" id="modal-basic-title">Ajouter User</h4>
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>

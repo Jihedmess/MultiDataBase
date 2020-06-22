@@ -61,8 +61,8 @@
     </mat-card-subtitle>
     <mat-card-actions  align="end">
       
-      <button class="button" [disabled]="item.result != 0 " (click)="UpdateSQLActivite(item.name,item.fileActivation)">Activer</button>
-      <button class="button"[disabled]="item.result == 0 " (click)="UpdateSQLDesactivite(item.name,item.filaDesactivation)">Desactiver</button>
+      <button class="button" [disabled]="item.result != 0 " [ngStyle]="{'background-color':item.result != 0 ? '#808080' : '#76d7c4' }" (click)="UpdateSQLActivite(item.name,item.fileActivation)">Activer</button>
+      <button class="button"[disabled]="item.result == 0 " [ngStyle]="{'background-color':item.result == 0 ? '#808080' : '#76d7c4' }" (click)="UpdateSQLDesactivite(item.name,item.filaDesactivation)">Desactiver</button>
       
     </mat-card-actions>
  
