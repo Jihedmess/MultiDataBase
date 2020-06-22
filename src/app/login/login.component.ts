@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('currentUser',res.accessToken);
         localStorage.setItem('username',res.username)
         localStorage.setItem('email',res.email)
+        localStorage.setItem('role',res.roles[0])
         this.router.navigate(['/home/environnements']);
       }else{
         this.router.navigate(['']);

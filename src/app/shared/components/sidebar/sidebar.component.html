@@ -33,7 +33,7 @@
     </div>
     <a mat-list-item routerActive="List-item-active" routerLink="/home/listFonctionalite">Gestion des Fonctionnalités</a>
  
-    <a mat-list-item routerActive="List-item-active" routerLink="/home/users">Gestion des Utilisateurs</a>
+    <a  mat-list-item routerActive="List-item-active" routerLink="/home/users" *ngIf=" role == 'admin'">Gestion des Utilisateurs</a>
     
 
     

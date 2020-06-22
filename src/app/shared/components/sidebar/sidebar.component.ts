@@ -11,6 +11,7 @@ export class SidebarComponent implements OnInit {
   visible = false
   username:any
   email:any
+  role:any
   constructor(private service:DatasourceService) { }
    
   ngOnInit(): void {
@@ -19,6 +20,7 @@ export class SidebarComponent implements OnInit {
     })
     this.username = localStorage.getItem("username")
     this.email = localStorage.getItem("email")
+    this.role = localStorage.getItem("role")
   }
 
 }

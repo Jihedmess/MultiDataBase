@@ -29,13 +29,13 @@
           
             <td>{{item.username}} </td>
             <td>{{item.email}}</td>
-            <td ><span *ngFor="let role of item.roles">{{role.name}} &nbsp;</span></td>
+            <td >{{item.roles[0].name}} </td>
             
             <td >
    
-                <button class="button" style="margin-left: -81px" (click)="openAddDatasource(content,item.id)" >Modifier</button>
+                <button class="button" style="margin-left: -81px"   (click)="openAddDatasource(content,item.id)" >Modifier</button>
 
-                <button class="button" style="margin-left: 10px" (click)="openAddDatasource(content2,item.id)" >Supprimer</button>
+                <button class="button" style="margin-left: 10px" (click)="openAddDatasource(content2,item.id)" [disabled]="roleConnect == item.roles[0].name && emailconnect == item.email" >Supprimer</button>
               </td>
               
           </tr>

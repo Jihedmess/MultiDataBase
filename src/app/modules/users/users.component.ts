@@ -20,11 +20,15 @@ export class UsersComponent implements OnInit {
   email:any
   password:any
   role:any
+  roleConnect :any
+  emailconnect :any
   ListeRole = new Array()
   closeResult: string;
   constructor(private service : UserService , private route :Router,
     private servicemodal :NgbModal ,private router:Router,private toastr: ToastrService) { }
   ngOnInit() {  
+    this.roleConnect = localStorage.getItem("role")
+    this.emailconnect = localStorage.getItem("email")
     this.getAllUser()
   
 
@@ -69,7 +73,7 @@ export class UsersComponent implements OnInit {
        this.username = res.username
        this.password= res.password
        this.email = res.email
-       this.role = res.role
+       this.role = res.roles[0].name
      })
     this.servicemodal.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
