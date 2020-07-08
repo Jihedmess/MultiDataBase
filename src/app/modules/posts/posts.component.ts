@@ -68,6 +68,8 @@ export class PostsComponent implements OnInit {
         console.log(res)
         if(res){
           this.toastr.success('Add fonctionzlité with success','Add Fonctionalité')
+          
+
         }
       }))
   }

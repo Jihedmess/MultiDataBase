@@ -95,6 +95,10 @@ onSubmit(form: NgForm){
   if(form.value.selectePlateforme == 2){
     this.selectePlateforme = "org.postgresql.Driver"
   }
+
+  if(form.value.selectePlateforme == 3){
+    this.selectePlateforme = "oracle.jdbc.driver.OracleDriver"
+  }
   
   
   let datasource = new DataSource(form.value.url,form.value.user,form.value.password,this.selectePlateforme,form.value.name)
@@ -102,7 +106,8 @@ onSubmit(form: NgForm){
     this.data_arrived = true
     this.getAllDataSource()
   })
-  this.toastr.success('Add Enveronnement'+form.value.name +' with success','Add Enveronnement')
+  this.toastr.success('Environnement '+form.value.name +'  ajoutée avec succès.','Add Enveronnement')
+ 
   this.servicemodal.dismissAll()
   
 
@@ -122,6 +127,7 @@ UpdateAddDatasource(content,id ,name){
     this.passwordupdate = res.password
     if(res.platform == "com.mysql.jdbc.Driver") this.platformupdate = 1
     if(res.platform == "org.postgresql.Driver") this.platformupdate = 2
+    if(res.platform == "oracle.jdbc.driver.OracleDriver") this.platformupdate = 3
 console.log("test la valeur de la plateforme")
 console.log(res.platform)
     console.log(this.platformupdate)
@@ -146,7 +152,8 @@ updateDatsource(){
   })
   this.servicemodal.dismissAll()
  
-  this.toastr.success('Update Enveronnement '+this.nameupdate+' with success','Update Enveronnement')
+  this.toastr.success('Environnement  '+this.nameupdate+' modifiée avec succès.','Update Enveronnement')
+ 
 }
 
 

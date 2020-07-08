@@ -98,7 +98,7 @@ export class UsersComponent implements OnInit {
    
        this.getAllUser()
        this.servicemodal.dismissAll()
-       this.toastr.success('Update User with success','Update User')
+       this.toastr.success('Utilisateur '+this.username+' modifiée  avec succès.','Utilisateur')
 
    })
  }
@@ -116,7 +116,9 @@ export class UsersComponent implements OnInit {
     console.log(res)
     this.getAllUser()
     this.servicemodal.dismissAll()
-    this.toastr.success('Add User with success','Add User')
+    this.toastr.success('Utilisateur '+form.value.name+' ajoutée avec succès.','Utilisateur')
+    
+
     
   })    
 }

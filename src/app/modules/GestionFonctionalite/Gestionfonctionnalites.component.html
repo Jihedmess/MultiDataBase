@@ -1,26 +1,26 @@
     
       <div class="container">  
   
-        <div class="table-wrapper">
+        <mat-card class="example-card" style="margin-bottom: 5%;">
             <div class="table-title">
               <div class="row">
                 <div class="col-sm-6">
                   <h2><b>List des Fonctionnalités</b></h2>
                 </div>
                 <div class="col-sm-6">
-                  <a (click)="openAddDatasource(content)" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Ajouter nouveau Fonctionnalité</span></a>
+                  <a (click)="openAddDatasource(content)" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Ajouter </span></a>
               </div>
               </div>
               </div>
-            </div>
-           
+            
+            </mat-card> 
         
-    
+      
   
     
 
 <div *ngIf="data_arrived">
-  <mat-card class="example-card" *ngFor="let item of data " >
+  <mat-card class="example-card" *ngFor="let item of data " style="margin-bottom: 1px;" >
     <mat-card-header>
       
       <mat-card-title>{{item.name}}</mat-card-title>
@@ -43,7 +43,7 @@
     </mat-card-actions>
  </mat-card>
 </div>
- </div>
+</div>
     <ng-template #content let-modal>
       <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title">Ajouter nouveau Fonctionnalité</h4>
@@ -164,9 +164,9 @@
       </div>
       <div class="modal-body">
         
-          
+        <button class="button"  (click)="Supprimer()" >Valider</button>
           <button class="button"  (click)="modal.dismiss('Cross click')"  >Annuler</button>
-          <button class="button"  (click)="Supprimer()" >Supprimer</button>
+         
           
         
       </div>  

@@ -83,8 +83,8 @@ name_delete:any
       
     }))
     this.servicemodal.dismissAll()
-    this.toastr.success('Add fonctionalité '+ form.value.name +' with success','Add Fonctionalité')
-       
+    this.toastr.success('Fonctionnalité '+ form.value.name +' ajoutée avec succès.','Fonctionnalité')
+    
 }
   
 openAddDatasource(content ) {
@@ -149,7 +149,8 @@ openDelete(content ,item ,name ) {
     }))
     this.getAllfonctionalite()
     this.servicemodal.dismissAll()
-    this.toastr.success('Update fonctionalité '+form.value.name +' with success','Update Fonctionalité')
+    this.toastr.success('Fonctionnalité '+form.value.name +' modifiée avec succès.','Fonctionnalité')
+   
    }
    Supprimer(){
     this.data_arrived = false

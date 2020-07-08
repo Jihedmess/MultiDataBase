@@ -30,7 +30,8 @@ import { UpdateUserComponent } from 'src/app/modules/update-user/update-user.com
     MatSidenavModule,
     MatDividerModule,
     FormsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    
 
   ]
 })
