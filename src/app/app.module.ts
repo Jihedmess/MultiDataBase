@@ -48,12 +48,9 @@ import { GestionFonctionnalitesComponent } from './modules/GestionFonctionalite/
 
 @NgModule({
   exports: [
-    A11yModule,
-   
-    
-    
+    A11yModule,    
     PortalModule,
-    ScrollingModule
+    ScrollingModule  
   ],
   declarations: [
     AppComponent,

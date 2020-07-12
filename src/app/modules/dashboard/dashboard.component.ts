@@ -87,7 +87,7 @@ export class DashboardComponent implements OnInit {
 onSubmit(form: NgForm){
   this.listDataSource = null
   this.data_arrived = false
-  console.log(form.value)
+  
   
   if(form.value.selectePlateforme == 1){
     this.selectePlateforme = "com.mysql.jdbc.Driver"
@@ -106,7 +106,7 @@ onSubmit(form: NgForm){
     this.data_arrived = true
     this.getAllDataSource()
   })
-  this.toastr.success('Environnement '+form.value.name +'  ajoutée avec succès.','Add Enveronnement')
+  this.toastr.success('Environnement '+form.value.name +'  ajoutée avec succès.','Environnement')
  
   this.servicemodal.dismissAll()
   
@@ -152,7 +152,7 @@ updateDatsource(){
   })
   this.servicemodal.dismissAll()
  
-  this.toastr.success('Environnement  '+this.nameupdate+' modifiée avec succès.','Update Enveronnement')
+  this.toastr.success('Environnement  '+this.nameupdate+' modifiée avec succès.','Environnement')
  
 }
 

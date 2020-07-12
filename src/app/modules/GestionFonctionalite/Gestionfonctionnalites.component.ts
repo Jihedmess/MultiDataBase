@@ -41,7 +41,7 @@ name_delete:any
   onFileSelected1(event) {
     if(event.target.files.length > 0) 
      {
-       console.log(event.target.files[0].name);
+      
        this.file1 = event.target.files[0].name
      }
    }
@@ -49,7 +49,7 @@ name_delete:any
    onFileSelected2(event) {
     if(event.target.files.length > 0) 
      {
-       console.log(event.target.files[0].name);
+       
        this.file2 = event.target.files[0].name;
      }
    }
@@ -57,7 +57,7 @@ name_delete:any
    onFileSelected3(event) {
     if(event.target.files.length > 0) 
      {
-       console.log(event.target.files[0].name);
+      
        this.file3 = event.target.files[0].name
      }
    }

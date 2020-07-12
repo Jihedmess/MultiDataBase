@@ -23,7 +23,7 @@ export class FonctionnalitesComponent implements OnInit {
   request_user:any;
   request_password:any;
   id_base :any
-  selectedStatus:number 
+  selectedStatus =1 
   data_arrived=false
   public selection: string;
 
@@ -34,6 +34,7 @@ export class FonctionnalitesComponent implements OnInit {
   ngOnInit(): void {
     this.getFonctionaliteByData()
     //this.getAllfonctionalite()
+    
     
   }
 
@@ -126,7 +127,7 @@ export class FonctionnalitesComponent implements OnInit {
         
       })
       this.getFonctionaliteByData()
-      this.toastr.success("fonctionnalité "+ item1 +"est activé avec succès" ,'Activé fonctionnalité')
+      this.toastr.success("fonctionnalité "+ item1 +" est activé avec succès" ,'Activer fonctionnalité')
       
     })
     
@@ -147,7 +148,7 @@ export class FonctionnalitesComponent implements OnInit {
         
       })
       this.getFonctionaliteByData()
-      this.toastr.success("fonctionnalité "+ item1 +"est désactivé avec succès" ,'Désactivé fonctionnalité')
+      this.toastr.success("fonctionnalité "+ item1 +" est désactivé avec succès" ,'Désactiver fonctionnalité')
       
     })
     
