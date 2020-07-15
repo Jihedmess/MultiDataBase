@@ -18,6 +18,7 @@ database = new Subject<any>()
   }
  changevalue(value){
    this.database.next(value)
+   localStorage.setItem('DataBasename',value);
  }
   saveDataSource(user:any,token): Observable<any>{
     const headers = new HttpHeaders({'Authorization':'Bearer '+token});
@@ -48,13 +49,13 @@ database = new Subject<any>()
    }
 
    updateDataSource(datasource:any,token): Observable<any>{
-    const headers = new HttpHeaders({'Authorization':'Bearer '+token});
+    const headers = new HttpHeaders({  'Content-Type': 'application/JSON' ,'Authorization':'Bearer '+token});
     return this.http.put("http://localhost:8080/api/updatedb",datasource,{headers:headers})
    }
 
 
    ChekSQLDataSource(objet:any): Observable<any>{
-    const headers = new HttpHeaders({'Authorization':'Bearer '});
+    const headers = new HttpHeaders({'Authorization':'Bearer ' });
     return this.http.post("http://localhost:9090/checkSql",objet)
    }
 

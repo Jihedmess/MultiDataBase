@@ -12,12 +12,15 @@ export class SidebarComponent implements OnInit {
   username:any
   email:any
   role:any
+  databasename :any
   constructor(private service:DatasourceService) { }
    
   ngOnInit(): void {
     this.service.database.subscribe((res)=>{
       this.database = res
     })
+    this.databasename = localStorage.getItem("DataBasename")
+
     this.username = localStorage.getItem("username")
     this.email = localStorage.getItem("email")
     this.role = localStorage.getItem("role")

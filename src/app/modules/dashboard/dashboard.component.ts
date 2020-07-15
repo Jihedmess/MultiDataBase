@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class DashboardComponent implements OnInit {
 
-   listDataSource :any
+   listDataSource  = new Array()
    closeResult: string;
    url :any
    password :any
@@ -40,15 +40,7 @@ export class DashboardComponent implements OnInit {
   }
   
 
-  getAllDataSource(){
-    this.listDataSource = null
-  this.data_arrived = false
-    console.log(localStorage.getItem('currentUser').valueOf())
-    this.service.getDataSources(localStorage.getItem('currentUser').valueOf()).subscribe((res)=>{
-    this.listDataSource =res
-    this.data_arrived = true
-    })
-  }
+ 
 
 
   delete(id:any){
@@ -85,7 +77,7 @@ export class DashboardComponent implements OnInit {
   }
 }
 onSubmit(form: NgForm){
-  this.listDataSource = null
+  this.listDataSource = new Array()
   this.data_arrived = false
   
   
@@ -144,23 +136,46 @@ console.log(res.platform)
 
 updateDatsource(){
   
-  
+  this.listDataSource = new Array()
   let datasource = new DataSourceupdate(this.idupadate,this.urlupdate,this.userupdate,this.passwordupdate,this.platformupdate,this.nameupdate);
   this.service.updateDataSource(datasource,localStorage.getItem('currentUser')).subscribe((res)=>{
     
+    
     this.getAllDataSource()
+   
   })
+ 
   this.servicemodal.dismissAll()
- 
+  this.listDataSource = new Array()
   this.toastr.success('Environnement  '+this.nameupdate+' modifiée avec succès.','Environnement')
- 
+  this.getAllDataSource()
 }
 
 
 connect(item){
   localStorage.setItem('IdDataBase',item.id);
+  
  this.service.changevalue(item.name)
   this.router.navigate(['/home/fonctionnalites']);
+  
+}
+
+getAllDataSource(){
+this.listDataSource = new Array()
+this.data_arrived = false
+  console.log(localStorage.getItem('currentUser').valueOf())
+  this.service.getDataSources(localStorage.getItem('currentUser').valueOf()).subscribe((res)=>{
+   for(let item of res){
+     this.listDataSource.push(item)
+   }
+ 
+   
+  
+  })
+  setTimeout (() => {
+    this.data_arrived = true
+ }, 1000);
+  
   
 }
 }
