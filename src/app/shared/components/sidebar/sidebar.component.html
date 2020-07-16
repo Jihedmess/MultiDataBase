@@ -4,7 +4,8 @@
         <h2><H1><b>{{username}}</b></H1></h2>
         <h4><b>{{email}}</b></h4>
         <img src="https://media-exp1.licdn.com/dms/image/C4E0BAQFzhG-h4GcJmA/company-logo_200_200/0?e=2159024400&v=beta&t=z2jF8U4UiwPYGdYB-HFclCNFxZScCS94IQPE5QblAm4" alt="userImg">
-        <h4><b> <span *ngIf='database'>Environnement connecté : {{ database }}</span></b></h4>
+        <h4><b> <span *ngIf='database != undefined'>Environnement connecté : {{ database }}</span></b></h4>
+        <h4><b> <span *ngIf='(databasename != undefined && database == undefined) || (databasename != undefined && database != undefined)  '>Environnement connecté : {{ databasename }}</span></b></h4>
     </div>
     <mat-divider></mat-divider>
    <h2 matSubheader> Pages</h2> 
@@ -19,13 +20,14 @@
 
     <a mat-list-item routerActive="List-item-active" (click)="visible = !visible"  routerLink="environnements" >Gestion des Environnements  <mat-icon aria-hidden="false" aria-label="Example home icon">play_arrow</mat-icon> </a>
    
-    <div class="w3-panel w3-red" *ngIf="visible && database">
+    <div class="w3-panel w3-red" *ngIf="(visible && database) || (visible && databasename) ">
     
 
         <mat-selection-list #shoes [multiple]="false">
            
             <mat-list-option>
-                <a mat-list-item routerActive="List-item-active" routerLink="/home/fonctionnalites" > Fonctionnalité de: {{database}}</a>
+                <a mat-list-item routerActive="List-item-active" routerLink="/home/fonctionnalites" *ngIf="database"> Fonctionnalité de:{{database}}</a>
+                <a mat-list-item routerActive="List-item-active" routerLink="/home/fonctionnalites" *ngIf="database == null"> Fonctionnalité de: {{databasename}}</a>
             </mat-list-option>
           </mat-selection-list>
        

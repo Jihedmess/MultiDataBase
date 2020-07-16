@@ -19,6 +19,10 @@ export class SidebarComponent implements OnInit {
     this.service.database.subscribe((res)=>{
       this.database = res
     })
+   console.log("teste la valeur database")
+    console.log(this.database)
+    console.log("teste la valeur databasename")
+    console.log(this.databasename)
     this.databasename = localStorage.getItem("DataBasename")
 
     this.username = localStorage.getItem("username")
