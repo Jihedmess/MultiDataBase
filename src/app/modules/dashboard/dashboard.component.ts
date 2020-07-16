@@ -49,10 +49,13 @@ export class DashboardComponent implements OnInit {
     this.service.deleteDataSources(this.idupadate,localStorage.getItem('currentUser').valueOf()).subscribe((res)=>{
      if(res){this.getAllDataSource()} 
      this.getAllDataSource()
+
+
     })
     
     this.servicemodal.dismissAll()
- 
+    this.toastr.success('Environnement supprimé avec succès.','Environnement')
+
   
 
   }

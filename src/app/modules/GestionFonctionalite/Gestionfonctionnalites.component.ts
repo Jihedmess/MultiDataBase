@@ -159,6 +159,7 @@ openDelete(content ,item ,name ) {
      })
      this.servicemodal.dismissAll()
      this.getAllfonctionalite()
+     this.toastr.success('Fonctionnalité supprimée avec succès.','Fonctionnalité')
    }
 
    onNavigate(item){

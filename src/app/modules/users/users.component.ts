@@ -43,6 +43,7 @@ export class UsersComponent implements OnInit {
      })
      this.servicemodal.dismissAll()
          this.getAllUser()
+         this.toastr.success('Utilisateur supprimé avec succès.','Utilisateur')
    }
 
    getAllUser(){
