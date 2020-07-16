@@ -139,9 +139,6 @@ updateDatsource(){
   this.listDataSource = new Array()
   let datasource = new DataSourceupdate(this.idupadate,this.urlupdate,this.userupdate,this.passwordupdate,this.platformupdate,this.nameupdate);
   this.service.updateDataSource(datasource,localStorage.getItem('currentUser')).subscribe((res)=>{
-    
-    
-   
    
   })
  
