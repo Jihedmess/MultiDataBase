@@ -66,7 +66,7 @@
        <div class="form-group">
 
          <p>URL</p>
-           <input type="text" name="url" id="url"  class="form-control"   placeholder="Enter an URL"   required/>
+           <input type="text" name="url" id="url"  class="form-control"   placeholder="Enter an URL"  ngModel  />
          </div>
 
          <div class="form-group">
@@ -112,32 +112,32 @@
           <div class="form-group">
 
        <p>Nom</p>
-         <input type="text" name="name" id="name" [(ngModel)]="name"  class="form-control"   placeholder="Enter the name" ngModel  required/>
+         <input type="text" name="name" id="name" [(ngModel)]="name"  class="form-control"   placeholder="Enter the name" ngModel  />
        </div>
        <div class="form-group">
          <p> Description</p>
-         <textarea type="text" name="description" [(ngModel)]="description" class="form-control"  rows="10" cols="78%" placeholder="Enter a description"  ngModel required> </textarea>
+         <textarea type="text" name="description" [(ngModel)]="description" class="form-control"  rows="10" cols="78%" placeholder="Enter a description"  ngModel > </textarea>
        </div>
        
        <div class="form-group">
 
          <p>URL</p>
-           <input type="text" name="url" id="url" [(ngModel)]="url"  class="form-control"   placeholder="Enter an URL" ngModel  required/>
+           <input type="text" name="url" id="url" [(ngModel)]="url"  class="form-control"   placeholder="Enter an URL" ngModel  />
          </div>
 
          <div class="form-group">
          <p>Fichier d'activation</p>
-         <input type="file" id="file1" name="file1" [(ngModel)]="file1"     (change)="onFileSelected1($event)" ngModel  required />
+         <input type="file" id="file1" name="file1" [(ngModel)]="file1"     (change)="onFileSelected1($event)" ngModel   />
          </div>
 
          <div class="form-group">
          <p>Fichier de désactivation</p>
-         <input type="file" id="file2" name="file2" [(ngModel)]="file2"      (change)="onFileSelected2($event)" ngModel  required />
+         <input type="file" id="file2" name="file2" [(ngModel)]="file2"      (change)="onFileSelected2($event)" ngModel   />
          </div>
 
          <div class="form-group">
          <p>Fichier de check</p>
-         <input type="file" id="file3" name="file3"  [(ngModel)]="file3"     (change)="onFileSelected3($event)" ngModel  required />
+         <input type="file" id="file3" name="file3"  [(ngModel)]="file3"     (change)="onFileSelected3($event)" ngModel   />
          </div>
  
          <mat-card-actions  align="end">

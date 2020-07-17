@@ -172,9 +172,7 @@ export class FonctionnalitesComponent implements OnInit {
         console.log('test check datasource with fonct')
         console.log(res)
         for(let item of res){this.data.push(item)}
-        setTimeout (() => {
-          console.log("Hello from setTimeout");
-       }, 5000);
+        
         this.data_arrived =true
       })
       
