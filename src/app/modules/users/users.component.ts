@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  data:any
+  data = new Array()
   token :any
   id:any
   username:any
@@ -24,6 +24,7 @@ export class UsersComponent implements OnInit {
   emailconnect :any
   ListeRole = new Array()
   closeResult: string;
+  dataarrived = false
   constructor(private service : UserService , private route :Router,
     private servicemodal :NgbModal ,private router:Router,private toastr: ToastrService) { }
   ngOnInit() {  
@@ -34,23 +35,36 @@ export class UsersComponent implements OnInit {
 
    }
    delete(){
+    this.dataarrived = false
+    this.data = new Array()
      this.service.deleteUser(this.id).subscribe((res)=>{
        
         
 
-
+     
        
      })
      this.servicemodal.dismissAll()
-         this.getAllUser()
+         
          this.toastr.success('Utilisateur supprimé avec succès.','Utilisateur')
+         this.getAllUser()
+        
    }
 
    getAllUser(){
+     this.dataarrived = false
+     this.data = new Array()
     this.service.getUsers(localStorage.getItem('currentUser')).subscribe((res)=>{
       console.log(res)
-     this.data = res
+    for(let item of res){
+      this.data.push(item)
+    }
+     
    })
+   setTimeout (() => {
+    this.dataarrived = true
+ }, 1000);
+   
    }
 
    openAddUser(content ) {
@@ -94,7 +108,7 @@ export class UsersComponent implements OnInit {
 
 
  updateUser(){
-   let user = new UserUpdate (this.id,this.username,this.password,this.email,this.role);
+   let user = new UserUpdate (this.id,this.username,this.password,this.email ,this.role);
    this.service.updateUser(user).subscribe((res)=>{
    
        this.getAllUser()

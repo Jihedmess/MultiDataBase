@@ -49,7 +49,7 @@ export class PostsComponent implements OnInit {
    }
 
    addFonctionalite(){
-     let fonct = new Fonctionalite(this.name,this.description,this.file1,this.file2,this.file3,this.url);
+     let fonct = new Fonctionalite(this.name,this.description,this.file1,this.file2,this.file3,this.url,null,null,null);
     
        
      this.service.savefonct1(fonct,localStorage.getItem('currentUser')).subscribe((res=>{
@@ -62,7 +62,7 @@ export class PostsComponent implements OnInit {
     onSubmit(form: NgForm) {
       console.log('test la valeur du champ description ')
       console.log(form.value.description)
-      let fonct = new Fonctionalite(form.value.name,form.value.description, this.file1, this.file2, this.file3,form.value.url);
+      let fonct = new Fonctionalite(form.value.name,form.value.description, this.file1, this.file2, this.file3,form.value.url,null,null,null);
       console.log(form.value)
       this.service.savefonct1(fonct,localStorage.getItem('currentUser')).subscribe((res=>{
         console.log(res)

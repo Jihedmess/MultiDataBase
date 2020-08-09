@@ -17,6 +17,9 @@ export class GestionFonctionnalitesComponent implements OnInit {
   file1:any
   file2:any
   file3:any
+  file1_string:any
+  file2_string:any
+  file3_string:any
   closeResult: string;
   id_delete :any
   name:any
@@ -29,7 +32,9 @@ name_delete:any
 
 
   constructor(private service:UserService, private route: ActivatedRoute , private router :Router ,private dataservice:DatasourceService
-    ,private toastr: ToastrService,private servicemodal :NgbModal) { }
+    ,private toastr: ToastrService,private servicemodal :NgbModal) { 
+   
+    }
 
   ngOnInit(): void {
  
@@ -44,6 +49,25 @@ name_delete:any
       
        this.file1 = event.target.files[0].name
      }
+
+     var file: File = event.target.files[0];
+var myReader: FileReader = new FileReader();
+var fileType = event.target.parentElement.id;
+let test;
+myReader.onloadend =  (e)=> {
+    //myReader.result is a String of the uploaded file
+    
+    this.file1_string = myReader.result;
+    console.log(this.file1_string);
+    //fileString = myReader.result would not work, 
+    //because it is not in the scope of the callback
+}
+
+
+
+myReader.readAsText(file);
+
+
    }
 
    onFileSelected2(event) {
@@ -52,6 +76,20 @@ name_delete:any
        
        this.file2 = event.target.files[0].name;
      }
+
+     var file: File = event.target.files[0];
+var myReader: FileReader = new FileReader();
+var fileType = event.target.parentElement.id;
+myReader.onloadend =  (e) =>{
+    //myReader.result is a String of the uploaded file
+    console.log(myReader.result);
+    console.log(myReader.result);
+    this.file2_string = myReader.result
+    //fileString = myReader.result would not work, 
+    //because it is not in the scope of the callback
+}
+
+myReader.readAsText(file);
    }
 
    onFileSelected3(event) {
@@ -60,6 +98,19 @@ name_delete:any
       
        this.file3 = event.target.files[0].name
      }
+     var file: File = event.target.files[0];
+var myReader: FileReader = new FileReader();
+var fileType = event.target.parentElement.id;
+myReader.onloadend =  (e)=> {
+    //myReader.result is a String of the uploaded file
+    console.log(myReader.result);
+    console.log(myReader.result);
+    this.file3_string = myReader.result
+    //fileString = myReader.result would not work, 
+    //because it is not in the scope of the callback
+}
+
+myReader.readAsText(file);
    }
 
 
@@ -74,9 +125,15 @@ name_delete:any
    
 
    onSubmit(form: NgForm) {
-    console.log('test la valeur du champ description ')
-    console.log(form.value.description)
-    let fonct = new Fonctionalite(form.value.name,form.value.description, this.file1, this.file2, this.file3,form.value.url);
+    console.log("teste1*******************************************************************")
+    console.log(this.file1_string)
+    console.log("teste1*******************************************************************")
+    console.log(this.file2_string)
+    console.log("teste1*******************************************************************")
+    console.log(this.file3_string)
+
+   
+    let fonct = new Fonctionalite(form.value.name,form.value.description, this.file1, this.file2, this.file3,form.value.url,this.file1_string,this.file2_string,this.file3_string);
     console.log(form.value)
     this.service.savefonct1(fonct,localStorage.getItem('currentUser')).subscribe((res=>{
       this.getAllfonctionalite()
@@ -165,4 +222,24 @@ openDelete(content ,item ,name ) {
    onNavigate(item){
     window.open("http://"+item, '_blank');
    }
+
+
+   changeListener($event): void {
+    this.readThis($event.target);
+}
+
+readThis(inputValue: any): void {
+var file: File = inputValue.files[0];
+var myReader: FileReader = new FileReader();
+var fileType = inputValue.parentElement.id;
+myReader.onloadend = function (e) {
+    //myReader.result is a String of the uploaded file
+    console.log(myReader.result);
+    console.log(myReader.result);
+    //fileString = myReader.result would not work, 
+    //because it is not in the scope of the callback
+}
+
+myReader.readAsText(file);
+}
 }

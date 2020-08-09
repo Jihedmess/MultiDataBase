@@ -5,7 +5,7 @@
         <h4><b>{{email}}</b></h4>
         <img src="https://media-exp1.licdn.com/dms/image/C4E0BAQFzhG-h4GcJmA/company-logo_200_200/0?e=2159024400&v=beta&t=z2jF8U4UiwPYGdYB-HFclCNFxZScCS94IQPE5QblAm4" alt="userImg">
         <h4><b> <span *ngIf='database != undefined '>Environnement connecté : {{ database }}</span></b></h4>
-        <h4><b> <span *ngIf='(databasename != undefined && database == undefined ) || (databasename != undefined && database != undefined )  '>Environnement connecté : {{ databasename }}</span></b></h4>
+        <h4><b> <span *ngIf='(databasename != undefined && database == undefined )  '>Environnement connecté : {{ databasename }}</span></b></h4>
     </div>
     <mat-divider></mat-divider>
    <h2 matSubheader> Pages</h2> 
