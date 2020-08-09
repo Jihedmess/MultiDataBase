@@ -22,7 +22,7 @@
             <th>action</th>
           </tr>
         </thead>
-        <tbody *ngIf= "dataarrived">
+        <tbody *ngIf ="dataarrived">
    
           
           <tr *ngFor="let item of data" >
@@ -74,7 +74,12 @@
           <input type="password"  class="form-control" name="password" [(ngModel)]="password" >
       
           <p>Role</p>
-          <input type="text"  class="form-control" name="role" [(ngModel)]="role" >
+          <div class="form-group">
+            <select   class="form-control" name="selectePlateforme" [(ngModel)]="role"  >
+                  <option  [ngValue]="2">User</option>
+                  <option  [ngValue]="1">Admin</option>
+            </select>
+           </div>
          
                
           

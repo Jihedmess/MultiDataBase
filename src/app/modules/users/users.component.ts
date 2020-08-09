@@ -24,6 +24,7 @@ export class UsersComponent implements OnInit {
   emailconnect :any
   ListeRole = new Array()
   closeResult: string;
+  roleupdate:any
   dataarrived = false
   constructor(private service : UserService , private route :Router,
     private servicemodal :NgbModal ,private router:Router,private toastr: ToastrService) { }
@@ -48,7 +49,6 @@ export class UsersComponent implements OnInit {
          
          this.toastr.success('Utilisateur supprimé avec succès.','Utilisateur')
          this.getAllUser()
-        
    }
 
    getAllUser(){
@@ -56,10 +56,9 @@ export class UsersComponent implements OnInit {
      this.data = new Array()
     this.service.getUsers(localStorage.getItem('currentUser')).subscribe((res)=>{
       console.log(res)
-    for(let item of res){
-      this.data.push(item)
-    }
-     
+     for(let item of res){
+       this.data.push(item)
+     }
    })
    setTimeout (() => {
     this.dataarrived = true
@@ -108,7 +107,15 @@ export class UsersComponent implements OnInit {
 
 
  updateUser(){
-   let user = new UserUpdate (this.id,this.username,this.password,this.email ,this.role);
+   
+   console.log(this.role)
+   if(this.role == 1){
+     this.roleupdate = "admin";
+
+   }else{
+     this.roleupdate ="user";
+   }
+   let user = new UserUpdate (this.id,this.username,this.password,this.email,this.roleupdate);
    this.service.updateUser(user).subscribe((res)=>{
    
        this.getAllUser()
